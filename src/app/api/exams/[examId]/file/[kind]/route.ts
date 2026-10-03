@@ -1,4 +1,7 @@
 import { auth } from "@/auth";
+import { hasCurrentCredentialVersion } from "@/features/auth/lib/credential-version";
+import { getSolutionVisibility } from "@/features/exams/solution-visibility";
+import { canReadExam } from "@/features/exams/availability";
 import { db } from "@/lib/db";
 import { readDocument } from "@/lib/storage";
 
@@ -22,9 +25,13 @@ export async function GET(
 
   const user = await db.user.findUnique({
     where: { id: session.user.id },
-    select: { role: true, status: true },
+    select: { role: true, status: true, credentialVersion: true },
   });
-  if (!user || user.status !== "ACTIVE") {
+  if (
+    !user ||
+    user.status !== "ACTIVE" ||
+    !hasCurrentCredentialVersion(session.user.credentialVersion, user.credentialVersion)
+  ) {
     return errorResponse("Tài khoản không có quyền truy cập.", 403);
   }
 
@@ -33,9 +40,15 @@ export async function GET(
     select: {
       title: true,
       status: true,
+      mode: true,
+      isForever: true,
+      availableFrom: true,
+      availableTo: true,
+      durationMinutes: true,
       examFileUrl: true,
       answerFileUrl: true,
       showAnswer: true,
+      hideWrongAnswers: true,
       allowDownload: true,
       examLinks: {
         where: { class: { enrollments: { some: { studentId: session.user.id } } } },
@@ -44,7 +57,7 @@ export async function GET(
       },
       attempts: {
         where: { userId: session.user.id, submittedAt: { not: null } },
-        select: { id: true },
+        select: { id: true, finalizedAnswers: { select: { isCorrect: true } } },
         take: 1,
       },
     },
@@ -58,12 +71,21 @@ export async function GET(
   if (!isAdmin && exam.status === "DRAFT") {
     return errorResponse("Đề chưa được xuất bản.", 403);
   }
+  if (!isAdmin && !canReadExam(exam)) {
+    return errorResponse("Đề chưa trong thời gian được giao.", 403);
+  }
 
-  if (
-    kind === "solution" &&
-    (!exam.answerFileUrl ||
-      (!isAdmin && (!exam.showAnswer || exam.attempts.length === 0)))
-  ) {
+  const submittedAttempt = exam.attempts[0];
+  const solutionVisibility = getSolutionVisibility({
+    isAdmin,
+    submitted: Boolean(submittedAttempt),
+    showAnswer: exam.showAnswer,
+    hideWrongAnswers: exam.hideWrongAnswers,
+    allAnswersCorrect:
+      Boolean(submittedAttempt?.finalizedAnswers.length) &&
+      submittedAttempt?.finalizedAnswers.every((answer) => answer.isCorrect === true),
+  });
+  if (kind === "solution" && (!exam.answerFileUrl || !solutionVisibility.solutionFile)) {
     return errorResponse("Lời giải chưa được mở.", 403);
   }
 

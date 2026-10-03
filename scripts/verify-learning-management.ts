@@ -4,12 +4,14 @@ import { randomUUID } from "node:crypto";
 import { saveAnswerBatchForUser } from "../src/features/exams/repository";
 import { submitAttemptForUser } from "../src/features/exams/service";
 import { db } from "../src/lib/db";
+import { requireTestDatabase } from "./test-database-guard";
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
 }
 
 async function main() {
+  requireTestDatabase();
   const suffix = randomUUID().slice(0, 8);
   const ids = { user: `verify-user-${suffix}`, class: `verify-class-${suffix}`, document: `verify-doc-${suffix}`, chapter: `verify-chapter-${suffix}`, question: `verify-review-${suffix}`, exam: `verify-exam-${suffix}` };
   try {
@@ -25,9 +27,15 @@ async function main() {
 
     await db.exam.create({ data: { id: ids.exam, title: "Đề verify", source: "QUESTION_BANK", examFileUrl: null, status: "PUBLISHED", examLinks: { create: { classId: ids.class } }, questions: { create: { number: 1, content: "Câu 1", options: ["A", "B"], correctAnswer: "B" } } } });
     const attempt = await db.examAttempt.create({ data: { examId: ids.exam, userId: ids.user, mode: "PRACTICE", openKey: `verify:${suffix}` } });
-    await saveAnswerBatchForUser(ids.user, { attemptId: attempt.id, changes: [{ questionNumber: 1, selectedAnswer: "B", changedAt: new Date().toISOString() }] });
+    const answerEvent = { eventId: randomUUID(), questionNumber: 1, selectedAnswer: "B", changedAt: new Date().toISOString() };
+    await saveAnswerBatchForUser(ids.user, { attemptId: attempt.id, changes: [answerEvent] });
+    await saveAnswerBatchForUser(ids.user, { attemptId: attempt.id, changes: [answerEvent] });
     const [latest, history] = await Promise.all([db.attemptAnswer.findFirst({ where: { attemptId: attempt.id, questionNumber: 1 } }), db.answerHistory.count({ where: { attemptId: attempt.id } })]);
     assert(latest?.selectedAnswer === "B" && latest.correctAnswer === null && history === 1, "Autosave chưa đồng thời upsert đáp án mới nhất và append lịch sử.");
+    await saveAnswerBatchForUser(ids.user, { attemptId: attempt.id, changes: [{ eventId: randomUUID(), questionNumber: 1, selectedAnswer: null, changedAt: new Date().toISOString() }] });
+    const cleared = await db.attemptAnswer.findFirst({ where: { attemptId: attempt.id, questionNumber: 1 } });
+    assert(cleared?.selectedAnswer === null, "Clear answer phải được lưu như một event hợp lệ.");
+    await saveAnswerBatchForUser(ids.user, { attemptId: attempt.id, changes: [{ eventId: randomUUID(), questionNumber: 1, selectedAnswer: "B", changedAt: new Date().toISOString() }] });
     const submitted = await submitAttemptForUser(attempt.id, ids.user);
     const noPdfExam = await db.exam.findUnique({ where: { id: ids.exam }, select: { source: true, examFileUrl: true } });
     assert(submitted.score === 10 && noPdfExam?.source === "QUESTION_BANK" && noPdfExam.examFileUrl === null, "Đề không PDF không được lưu/chấm đúng invariant.");

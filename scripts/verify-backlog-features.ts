@@ -9,6 +9,7 @@ import {
 } from "../src/features/progress/metrics";
 import { parseReviewQuestionFilters } from "../src/features/review-questions/filters";
 import { parseSearchFilters } from "../src/features/search/filters";
+import { requireTestDatabase } from "./test-database-guard";
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
@@ -27,6 +28,7 @@ function assertDensePositions(
 }
 
 async function main() {
+  requireTestDatabase();
   const search = parseSearchFilters({ q: "%_Toán".repeat(40), type: "bad", page: "-2" });
   assert(search.q.length === 100 && search.type === "all" && search.page === 1, "Parser tìm kiếm không whitelist/giới hạn input.");
   const documents = parseStudentDocumentFilters({ type: "bad", sort: "TITLE", page: "2" });
