@@ -156,7 +156,7 @@ export async function setStudentClasses(userId: string, classIds: string[]): Pro
     revalidatePath(ACCOUNTS_PAGE_PATH);
     revalidatePath("/admin/lop-hoc");
     revalidatePath("/lop-hoc");
-    revalidatePath("/theo-doi-hoc-tap");
+    revalidatePath("/tai-khoan/theo-doi-hoc-tap");
     revalidatePath("/thong-bao");
     return { success: true, classIds: normalizedClassIds };
   } catch (error) {

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
-import { Bell, KeyRound, LogIn, LogOut, Menu, Search, ShieldCheck, UserPlus, X } from "lucide-react";
+import { Bell, ChartNoAxesColumnIncreasing, KeyRound, LogIn, LogOut, Menu, Search, ShieldCheck, UserPlus, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
@@ -42,8 +42,6 @@ import { ADMIN_NAV_LINKS, NAV_LINKS } from "./navLinks";
  * Dưới 2xl: menu thu vào nút hamburger, chỉ còn logo + hamburger cho đỡ chật —
  * ở cỡ chữ này các mục menu, chuông và tài khoản không đủ chỗ trên 1 hàng.
  */
-const STUDENT_PROGRESS_LINK = { href: "/theo-doi-hoc-tap", label: "Theo dõi học tập" };
-
 export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCount?: number }) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,11 +49,7 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
   const isAuthenticated = status === "authenticated" && session?.user;
   const isStudent = isAuthenticated && session.user.role === "STUDENT";
   const isAdmin = isAuthenticated && session.user.role === "ADMIN";
-  const links = isAdmin
-    ? ADMIN_NAV_LINKS
-    : isStudent
-      ? [...NAV_LINKS, STUDENT_PROGRESS_LINK]
-      : NAV_LINKS;
+  const links = isAdmin ? ADMIN_NAV_LINKS : NAV_LINKS;
   const homeHref = isAdmin ? "/admin" : "/";
   const visibleUnreadCount = pathname === "/thong-bao" ? 0 : unreadNotificationCount;
 
@@ -212,6 +206,16 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
                   <KeyRound className="size-5" aria-hidden />
                   Đổi mật khẩu
                 </Link>
+                {session.user.role === "STUDENT" && (
+                  <Link
+                    href="/tai-khoan/theo-doi-hoc-tap"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex w-full items-center justify-center gap-2 rounded-2xl border border-navy-200/60 bg-white px-4 py-3 font-medium text-navy-500 transition-colors hover:bg-pastel-50"
+                  >
+                    <ChartNoAxesColumnIncreasing className="size-5" aria-hidden />
+                    Theo dõi học tập
+                  </Link>
+                )}
                 {session.user.role === "ADMIN" && (
                   <Link
                     href="/admin"
@@ -300,6 +304,7 @@ const ACCOUNT_MENU_ITEMS = [
   { key: "admin", label: "Trang quản trị", icon: ShieldCheck, href: "/admin", adminOnly: true },
   { key: "search", label: "Tìm kiếm", icon: Search, href: "/tim-kiem", adminOnly: false },
   { key: "password", label: "Đổi mật khẩu", icon: KeyRound, href: "/tai-khoan/doi-mat-khau", adminOnly: false },
+  { key: "progress", label: "Theo dõi học tập", icon: ChartNoAxesColumnIncreasing, href: "/tai-khoan/theo-doi-hoc-tap", adminOnly: false, studentOnly: true },
   { key: "logout", label: "Đăng xuất", icon: LogOut, href: null, adminOnly: false },
 ] as const;
 
@@ -351,6 +356,7 @@ function AccountMenu({ user }: { user: NavbarSessionUser }) {
         >
           {ACCOUNT_MENU_ITEMS.map((item) => {
             if (item.adminOnly && user.role !== "ADMIN") return null;
+            if ("studentOnly" in item && item.studentOnly && user.role !== "STUDENT") return null;
             const Icon = item.icon;
             const itemHref = item.key === "search" && user.role === "ADMIN" ? "/admin/tim-kiem" : item.href;
 
