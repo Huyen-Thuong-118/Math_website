@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { ExamList } from "@/features/exams/components/ExamList";
-import { ExamHero, FeaturedExam, GroupExamBanner } from "@/features/exams/components/ExamLanding";
+import { ExamHero, FeaturedExam } from "@/features/exams/components/ExamLanding";
 import { getExamListForCurrentStudent } from "@/features/exams/queries";
 
 export const metadata: Metadata = { title: "Phòng thi thử | BQD Math" };
@@ -18,7 +18,6 @@ export default async function ExamListPage() {
         <p className="-mt-2 text-sm text-navy-400">Đáp án được tự động lưu khi làm bài.</p>
         <ExamList exams={exams} />
       </div>
-      <GroupExamBanner />
     </section>
   );
 }

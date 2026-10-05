@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { Clock3, FileQuestion, Phone, Users } from "lucide-react";
+import { Clock3, FileQuestion } from "lucide-react";
 
 import type { ExamListItem } from "../types";
 import { StartExamButton } from "./StartExamButton";
@@ -80,38 +79,6 @@ export function FeaturedExam({ exams }: { exams: ExamListItem[] }) {
           disabled={!exam.available || limitReached || exam.questionCount === 0}
           resume={Boolean(exam.openAttemptId)}
         />
-      </div>
-    </section>
-  );
-}
-
-// TODO: wire real data — hotline / form đăng ký thi theo nhóm.
-export function GroupExamBanner() {
-  return (
-    <section className="rounded-3xl bg-linear-to-br from-navy-500 to-galaxy-800 p-8 text-pastel-50 sm:p-10">
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold">
-        <Users className="size-3" aria-hidden />
-        Dành riêng cho các trường THPT và nhóm học sinh
-      </span>
-      <h2 className="mt-4 max-w-xl text-white">Tổ chức thi thử trực tuyến theo nhóm hoặc trường?</h2>
-      <p className="mt-3 max-w-xl text-sm text-pastel-200">
-        Thiết lập phòng thi riêng với mã đề bảo mật, thống kê phổ điểm lớp học và xuất báo cáo xếp hạng chi tiết.
-      </p>
-      <div className="mt-6 flex flex-wrap gap-3">
-        <Link
-          href="/lien-he"
-          className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-navy-600"
-        >
-          <Phone className="size-4" aria-hidden />
-          Hotline hỗ trợ thi
-        </Link>
-        <Link
-          href="/lien-he"
-          className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/30 px-6 text-sm font-semibold text-white hover:bg-white/10"
-        >
-          <Users className="size-4" aria-hidden />
-          Đăng ký thi theo nhóm
-        </Link>
       </div>
     </section>
   );

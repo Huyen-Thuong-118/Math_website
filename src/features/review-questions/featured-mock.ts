@@ -48,18 +48,3 @@ export const FEATURED_TOPICS: FeaturedTopic[] = [
     hot: false,
   },
 ];
-
-export const CASIO_TIPS = [
-  {
-    title: "Mẹo 1: Kỹ thuật CALC 100 và 0.01 giải nhanh phương trình Logarit chứa tham số",
-    steps: ["Gán giá trị m = 100 hoặc 1000 vào phương trình chứa tham số.", "Dùng SOLVE để tìm nghiệm gần đúng rồi đối chiếu đáp án."],
-  },
-  {
-    title: "Mẹo 2: Nhận diện nhanh cực trị hàm trị tuyệt đối y = |f(x) + m|",
-    steps: ["Đếm điểm cực trị của f(x), cộng thêm số giao điểm với trục Ox."],
-  },
-  {
-    title: "Mẹo 3: Tránh bẫy nghiệm kép khi tính số điểm cực trị từ đồ thị đạo hàm f'(x)",
-    steps: ["Điểm đạo hàm chạm trục nhưng không đổi dấu thì không phải cực trị."],
-  },
-];

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronDown, Video, Zap } from "lucide-react";
+import { Video } from "lucide-react";
 
 import {
-  CASIO_TIPS,
   FEATURED_FILTERS,
   FEATURED_STATS,
   FEATURED_TOPICS,
@@ -72,36 +71,6 @@ export default function FeaturedQuestionsPage() {
         </p>
         <Link href="/dang-nhap" className="mt-4 inline-flex min-h-11 items-center rounded-full bg-navy-500 px-6 text-sm font-semibold text-pastel-50">
           Đăng nhập học viên
-        </Link>
-      </section>
-
-      <section className="rounded-3xl bg-pastel-100 p-6 sm:p-8">
-        <p className="inline-flex items-center gap-2 text-xs font-semibold text-navy-300">
-          <Zap className="size-4" aria-hidden /> Thực chiến phòng thi
-        </p>
-        <h2 className="mt-2">Kỹ thuật bấm máy Casio và mẹo giải nhanh độc quyền Thầy BQD</h2>
-        <div className="mt-4 space-y-3">
-          {CASIO_TIPS.map((tip) => (
-            <details key={tip.title} className="group rounded-2xl border border-navy-100 bg-white p-4">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 font-semibold text-navy-600">
-                {tip.title}
-                <ChevronDown className="size-4 shrink-0 transition-transform group-open:rotate-180" aria-hidden />
-              </summary>
-              <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-navy-400">
-                {tip.steps.map((step) => <li key={step}>{step}</li>)}
-              </ul>
-            </details>
-          ))}
-        </div>
-      </section>
-
-      <section className="rounded-3xl bg-linear-to-br from-navy-500 to-galaxy-800 p-8 text-pastel-50 sm:p-10">
-        <h2 className="text-white">Bạn đã tự tin nắm trọn 50 dạng toán này?</h2>
-        <p className="mt-2 max-w-xl text-sm text-pastel-200">
-          Tham gia bài kiểm tra đánh giá năng lực 25 câu trắc nghiệm để nhận lộ trình ôn tập cá nhân.
-        </p>
-        <Link href="/thi-thu" className="mt-5 inline-flex min-h-11 items-center rounded-full bg-white px-6 text-sm font-semibold text-navy-600">
-          Làm bài test 35 phút
         </Link>
       </section>
     </div>

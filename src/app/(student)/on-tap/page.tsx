@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BookOpen, ChartNoAxesColumnIncreasing } from "lucide-react";
 
-import { DiagnosticBanner, ReviewHero } from "@/features/review-questions/components/ReviewBanners";
+import { ReviewHero } from "@/features/review-questions/components/ReviewBanners";
 import { getReviewChaptersForCurrentStudent } from "@/features/review-questions/queries";
 
 export const dynamic = "force-dynamic";
@@ -42,7 +42,6 @@ export default async function ReviewChapterListPage() {
           Bạn chưa được giao câu hỏi ôn tập nào.
         </div>
       )}
-      <DiagnosticBanner />
     </section>
   );
 }

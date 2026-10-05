@@ -1,9 +1,5 @@
 import { DocumentCard, type DocumentCardItem } from "@/features/documents/components/DocumentCard";
-import {
-  DocumentsHero,
-  UnlockBanner,
-  WatermarkNotice,
-} from "@/features/documents/components/DocumentsBanners";
+import { DocumentsHero } from "@/features/documents/components/DocumentsBanners";
 import {
   StudentDocumentFilters,
   StudentDocumentPagination,
@@ -50,8 +46,6 @@ export default async function DocumentsPage({
         </div>
       )}
       <StudentDocumentPagination filters={filters} page={pagination.page} totalPages={pagination.totalPages} />
-      <WatermarkNotice />
-      <UnlockBanner />
     </section>
   );
 }

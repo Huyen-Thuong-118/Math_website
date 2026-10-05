@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { DiagnosticBanner } from "@/features/review-questions/components/ReviewBanners";
 import { ReviewPractice } from "@/features/review-questions/components/ReviewPractice";
 import {
   ReviewQuestionPagination,
@@ -28,7 +27,6 @@ export default async function ReviewQuestionsPage({
       <StudentReviewQuestionFilters chapterId={chapterId} filters={filters} options={filterOptions} total={pagination.total} />
       <ReviewPractice questions={questions} />
       <ReviewQuestionPagination pathname={`/on-tap/${chapterId}`} filters={filters} page={pagination.page} totalPages={pagination.totalPages} />
-      <DiagnosticBanner />
     </section>
   );
 }
