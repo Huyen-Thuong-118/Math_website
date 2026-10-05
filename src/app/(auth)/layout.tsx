@@ -24,7 +24,7 @@ export default async function AuthLayout({
 
   return (
     <div className="ds relative flex min-h-dvh items-center justify-center bg-white p-4 sm:p-8 lg:p-12">
-      <ThemeToggle className="absolute right-4 top-4 z-20 w-32" />
+      <ThemeToggle className="absolute right-4 top-4 z-20" />
       <div className="grid w-full max-w-[1240px] gap-8 lg:grid-cols-2 lg:gap-12">
         {/* Panel trái — ẩn dưới lg */}
         <div className="relative hidden flex-col justify-between overflow-hidden rounded-[2rem] bg-linear-to-b from-pastel-50 to-pastel-200 p-10 lg:flex">

@@ -70,7 +70,7 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
         </div>
 
         {/* GIỮA — toàn bộ mục menu (chỉ desktop) */}
-        <ul className="hidden items-center gap-0.5 text-lg 2xl:flex">
+        <ul className="hidden items-center gap-0.5 text-base 2xl:flex">
           {links.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -96,7 +96,7 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
             khối riêng. Đăng ký là nút chính (nền navy đặc), Đăng nhập là phụ.
             Hamburger thay cả cụm này ở mobile. */}
         <div className="flex items-center justify-end gap-2 2xl:border-l 2xl:border-navy-100/80 2xl:pl-3">
-          <ThemeToggle className="hidden w-32 2xl:flex" />
+          <ThemeToggle className="hidden 2xl:inline-flex" />
           {isStudent && (
             <Link
               href="/thong-bao"
@@ -159,7 +159,7 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
         className="border-t border-navy-100/70 2xl:hidden"
       >
         <ul className="flex w-full flex-col gap-1 px-4 py-4 text-lg">
-          <li><ThemeToggle className="w-full" /></li>
+          <li className="px-4 py-1"><ThemeToggle label="Giao diện sáng / tối" /></li>
           {links.map((link) => {
             const isActive = pathname === link.href;
             return (

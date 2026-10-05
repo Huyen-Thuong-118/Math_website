@@ -122,7 +122,7 @@ function SidebarContent({ pathname, onNavigate }: { pathname: string; onNavigate
   return (
     <>
       <p className="mb-4 px-2 text-xs font-semibold uppercase tracking-wide text-navy-300">Quản trị</p>
-      <ThemeToggle className="mb-3 w-full" />
+      <ThemeToggle label="Giao diện sáng / tối" className="mb-3 px-1" />
       <Link href="/" onClick={onNavigate} className="mb-5 flex min-h-11 items-center gap-2.5 rounded-xl border border-navy-200 bg-white px-3 py-2.5 text-sm font-semibold text-navy-600 shadow-sm transition hover:bg-pastel-100">
         <House className="size-4 shrink-0" aria-hidden />Trang chủ BQD Math
       </Link>
