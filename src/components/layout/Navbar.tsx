@@ -60,10 +60,10 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
   const visibleUnreadCount = pathname === "/thong-bao" ? 0 : unreadNotificationCount;
 
   return (
-    <header className="sticky top-0 z-50 w-full overflow-hidden rounded-b-[2.25rem] bg-nav shadow-[0_10px_28px_rgba(27,42,74,0.12)] 2xl:overflow-visible">
+    <header className="ds-nav sticky top-5 z-50 mx-4 mt-5 overflow-hidden rounded-[1.75rem] 2xl:mx-auto 2xl:w-[calc(100%-2.5rem)] 2xl:max-w-[96rem] 2xl:overflow-visible 2xl:rounded-full">
       <nav
         aria-label="Điều hướng chính"
-        className="grid w-full grid-cols-[auto_1fr_auto] items-center gap-3 px-4 py-4 2xl:grid-cols-[1fr_auto_1fr] 2xl:px-5"
+        className="grid w-full grid-cols-[auto_1fr_auto] items-center gap-3 px-5 py-2 2xl:grid-cols-[1fr_auto_1fr]"
       >
         {/* TRÁI — logo, bấm về Trang chủ */}
         <div className="flex items-center justify-start">
@@ -87,8 +87,8 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
                   className={cn(
                     "block rounded-full px-2.5 py-2 whitespace-nowrap transition-colors",
                     isActive
-                      ? "bg-navy-500 text-pastel-50"
-                      : "text-navy-500 hover:bg-white hover:text-navy-600",
+                      ? "bg-pastel-100 font-bold text-navy-500"
+                      : "font-normal text-navy-500 hover:bg-pastel-50 hover:font-bold",
                   )}
                 >
                   {link.label}
@@ -162,7 +162,7 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
       <div
         id="mobile-menu"
         hidden={!isMenuOpen}
-        className="border-t border-navy-100/70 bg-nav 2xl:hidden"
+        className="border-t border-navy-100/70 2xl:hidden"
       >
         <ul className="flex w-full flex-col gap-1 px-4 py-4 text-lg">
           <li><ThemeToggle className="w-full" /></li>

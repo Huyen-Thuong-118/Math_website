@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import { MathDoodles } from "@/features/auth/components/MathDoodles";
+import { AuthIllustration } from "@/features/auth/components/AuthIllustration";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 // Route group (auth): Đăng nhập/Đăng ký/Quên mật khẩu — layout split-screen
@@ -23,51 +23,34 @@ export default async function AuthLayout({
   }
 
   return (
-    <div className="relative flex min-h-dvh flex-col md:flex-row">
+    <div className="ds relative flex min-h-dvh items-center justify-center bg-white p-4 sm:p-8 lg:p-12">
       <ThemeToggle className="absolute right-4 top-4 z-20 w-32" />
-      {/* Panel trái — ẩn hoàn toàn dưới md, chỉ còn panel phải full width */}
-      <div className="relative hidden w-full flex-col justify-between overflow-hidden bg-linear-to-b from-galaxy-900 to-galaxy-800 px-10 py-10 text-pastel-50 md:flex md:w-[42%] lg:w-[38%]">
-        <MathDoodles />
-
-        <Link href="/" className="relative z-10 text-2xl font-semibold tracking-tight">
-          BQD<span className="text-pastel-400">Math</span>
-        </Link>
-
-        <div className="relative z-10 flex flex-col gap-3 pb-16">
-          <h1 className="text-3xl leading-snug font-semibold text-balance">
-            Ôn luyện Toán học có định hướng, thi thử như thi thật.
-          </h1>
-          <p className="text-sm leading-relaxed text-pastel-200">
-            Đăng nhập để theo dõi lịch học, làm bài ôn tập và vào phòng thi thử
-            cùng BQD Math.
-          </p>
+      <div className="grid w-full max-w-[1240px] gap-8 lg:grid-cols-2 lg:gap-12">
+        {/* Panel trái — ẩn dưới lg */}
+        <div className="relative hidden flex-col justify-between overflow-hidden rounded-[2rem] bg-linear-to-b from-pastel-50 to-pastel-200 p-10 lg:flex">
+          <Link href="/" className="flex items-center gap-3">
+            <span className="flex size-11 items-center justify-center rounded-2xl bg-navy-500 text-xl font-bold text-white">Σ</span>
+            <span className="text-2xl font-semibold tracking-tight text-navy-500">BQD Math</span>
+          </Link>
+          <div className="space-y-3">
+            <h2 className="!text-4xl text-navy-500">Chào mừng trở lại</h2>
+            <p className="text-navy-400">
+              Học tập thông minh và bứt phá điểm số môn Toán THPT Quốc gia.
+            </p>
+          </div>
+          <AuthIllustration />
+          <p className="text-xs text-navy-300">© 2025 BQD Math. Nền tảng học Toán THPTQG.</p>
         </div>
 
-        {/* Dải sóng cong trang trí phía dưới panel — 2 lớp mờ chồng nhau tạo
-            chiều sâu, không giành sự chú ý với nội dung phía trên. */}
-        <svg
-          aria-hidden
-          viewBox="0 0 400 200"
-          preserveAspectRatio="none"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-40 w-full"
-        >
-          <path
-            fill="var(--color-pastel-400)"
-            fillOpacity="0.08"
-            d="M0,120 C100,180 300,40 400,100 L400,200 L0,200 Z"
-          />
-          <path
-            fill="var(--color-pastel-400)"
-            fillOpacity="0.12"
-            d="M0,150 C120,90 280,190 400,140 L400,200 L0,200 Z"
-          />
-        </svg>
-      </div>
-
-      {/* Panel phải — form, căn giữa theo chiều dọc */}
-      <div className="flex w-full flex-1 items-center justify-center bg-pastel-100 px-4 py-10 sm:px-8">
-        <div className="w-full max-w-md rounded-[2rem] bg-white p-8 shadow-[0_20px_60px_rgba(27,42,74,0.12)] sm:p-10">
-          {children}
+        {/* Panel phải — form */}
+        <div className="flex items-center justify-center py-4">
+          <div className="w-full max-w-md">
+            <Link href="/" className="mb-6 flex items-center gap-2 lg:hidden">
+              <span className="flex size-9 items-center justify-center rounded-xl bg-navy-500 text-lg font-bold text-white">Σ</span>
+              <span className="text-xl font-semibold text-navy-500">BQD Math</span>
+            </Link>
+            {children}
+          </div>
         </div>
       </div>
     </div>

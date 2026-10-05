@@ -138,7 +138,7 @@ async function main() {
       where: { attemptId: attempt.id },
       orderBy: [{ changedAt: "asc" }, { id: "asc" }],
     });
-    const latest = new Map<number, string>();
+    const latest = new Map<number, string | null>();
     for (const answer of savedHistory) {
       latest.set(answer.questionNumber, answer.selectedAnswer);
     }

@@ -10,6 +10,7 @@ const contentSecurityPolicy = [
   "connect-src 'self' https://storage.googleapis.com https://*.storage.googleapis.com https://*.cloudflarestream.com",
   "media-src 'self' blob: https://*.cloudflarestream.com",
   "worker-src 'self' blob:",
+  "frame-src https://www.google.com", // modal bản đồ ở /lien-he (Google Maps embed)
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

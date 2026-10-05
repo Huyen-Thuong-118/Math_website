@@ -53,6 +53,10 @@ export function useAnswerBuffer(
     const recovered = readQueue(queueKey);
     if (recovered.length === 0) return;
     pendingRef.current = recovered;
+    // Khôi phục hàng đợi từ localStorage CHỈ làm được sau khi mount (đọc
+    // storage lúc render sẽ lệch HTML server → hydration mismatch), nên cần
+    // setState trong effect.
+    /* eslint-disable react-hooks/set-state-in-effect */
     setAnswers((current) => {
       const next = { ...current };
       for (const change of recovered) {
@@ -63,6 +67,7 @@ export function useAnswerBuffer(
     });
     setHistory((current) => [...current, ...recovered]);
     setSaveStatus("unsaved");
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, [queueKey]);
 
   const flush = useCallback(async (): Promise<boolean> => {
