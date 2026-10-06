@@ -13,6 +13,8 @@ function parseHHMM(value: string): number {
 }
 
 const WEEK_MINUTES = 7 * 24 * 60;
+/** Chỉ làm nổi bật buổi sắp diễn ra khi còn tối đa 6 tiếng nữa là bắt đầu. */
+const UPCOMING_HIGHLIGHT_MINUTES = 6 * 60;
 
 export function computeSessionStatuses(
   sessions: ClassSession[],
@@ -36,7 +38,7 @@ export function computeSessionStatuses(
     if (delta < minUpcomingDelta) minUpcomingDelta = delta;
   }
   for (const item of upcoming) {
-    if (item.delta === minUpcomingDelta) statuses.set(item.id, "next");
+    if (item.delta === minUpcomingDelta && item.delta <= UPCOMING_HIGHLIGHT_MINUTES) statuses.set(item.id, "next");
   }
   return statuses;
 }

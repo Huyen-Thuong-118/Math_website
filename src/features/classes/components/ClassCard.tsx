@@ -17,15 +17,8 @@ export type ClassCardItem = {
 
 export function ClassHero() {
   return (
-    <header className="rounded-3xl bg-linear-to-br from-white to-pastel-100 p-6 sm:p-10">
-      <span className="ds-chip">Lớp học mục tiêu THPTQG</span>
-      <h1 className="mt-4 max-w-2xl">
-        Học đúng lớp, <span className="text-navy-300">theo đúng lộ trình</span>
-      </h1>
-      <p className="mt-3 max-w-2xl text-navy-400">
-        Nội dung, tài liệu, câu hỏi ôn tập và đề thi được giáo viên giao riêng
-        cho từng lớp. Bạn chỉ thấy các lớp mình đã được xếp vào.
-      </p>
+    <header>
+      <h1>Lớp học của tôi</h1>
     </header>
   );
 }
@@ -84,25 +77,3 @@ export function LockedClassCard() {
 }
 
 // TODO: wire real data — trích dẫn / thông tin giáo viên.
-export function ClassPrincipleBanner() {
-  return (
-    <section className="grid gap-4 md:grid-cols-2">
-      <div className="rounded-3xl bg-white p-6 text-center">
-        <h3>Không tìm thấy lớp học phù hợp?</h3>
-        <p className="mt-2 text-sm text-navy-400">
-          Nếu bạn cần chuyển lớp hoặc xếp lớp học trực tiếp, hãy gửi phản hồi cho trung tâm.
-        </p>
-        <Link href="/lien-he" className="mt-4 inline-flex min-h-11 items-center rounded-full border border-navy-200/60 px-5 text-sm font-semibold text-navy-500">
-          Liên hệ trung tâm
-        </Link>
-      </div>
-      <div className="rounded-3xl bg-pastel-100 p-6">
-        <p className="text-xs font-semibold tracking-wide text-navy-300 uppercase">Nguyên tắc BQD Math</p>
-        <h3 className="mt-2">Chinh phục 9+ môn Toán THPTQG</h3>
-        <p className="mt-3 text-sm italic text-navy-400">
-          “Không giải toán máy móc. Hãy nắm chắc bản chất hình học không gian và định nghĩa tích phân.”
-        </p>
-      </div>
-    </section>
-  );
-}

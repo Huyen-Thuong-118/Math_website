@@ -1,7 +1,6 @@
 import {
   ClassCard,
   ClassHero,
-  ClassPrincipleBanner,
   LockedClassCard,
 } from "@/features/classes/components/ClassCard";
 import { getClassesForCurrentStudent } from "@/features/classes/queries";
@@ -41,7 +40,6 @@ export default async function ClassListPage() {
           <LockedClassCard />
         </div>
       )}
-      <ClassPrincipleBanner />
     </section>
   );
 }

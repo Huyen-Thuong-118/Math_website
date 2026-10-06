@@ -29,8 +29,8 @@ import { ADMIN_NAV_LINKS, NAV_LINKS } from "./navLinks";
  *
  * Bố cục 3 vùng: trái = logo BQDMath (về "/") · giữa = NAV_LINKS ·
  * phải = cụm Đăng nhập/Đăng ký tách riêng bằng 1 vạch ngăn mảnh.
- * Chia 3 cột `1fr auto 1fr` để cụm menu giữa luôn nằm chính giữa thanh,
- * không bị lệch khi logo và cụm nút 2 bên rộng khác nhau.
+ * Chia 3 cột `auto 1fr auto`: logo và cụm tài khoản co theo nội dung (tên học
+ * sinh dài không bị cắt), menu chiếm phần còn lại và căn giữa.
  *
  * KHÔNG bọc `max-w-6xl` như <main>: nội dung nav chạy hết bề ngang để cụm
  * Đăng nhập/Đăng ký nằm sát mép phải màn hình. Đổi lại logo cũng ra sát mép
@@ -57,7 +57,7 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
     <header className="ds-nav sticky top-5 z-50 mx-4 mt-5 overflow-hidden rounded-[1.75rem] 2xl:mx-auto 2xl:w-[calc(100%-2.5rem)] 2xl:max-w-[96rem] 2xl:overflow-visible 2xl:rounded-full">
       <nav
         aria-label="Điều hướng chính"
-        className="grid w-full grid-cols-[auto_1fr_auto] items-center gap-3 px-5 py-2 2xl:grid-cols-[1fr_auto_1fr]"
+        className="grid w-full grid-cols-[auto_1fr_auto] items-center gap-3 px-5 py-2 2xl:grid-cols-[auto_1fr_auto]"
       >
         {/* TRÁI — logo, bấm về Trang chủ */}
         <div className="flex items-center justify-start">
@@ -70,7 +70,7 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
         </div>
 
         {/* GIỮA — toàn bộ mục menu (chỉ desktop) */}
-        <ul className="hidden items-center gap-0.5 text-base 2xl:flex">
+        <ul className="hidden items-center justify-center gap-0.5 text-base 2xl:flex">
           {links.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -346,7 +346,7 @@ function AccountMenu({ user }: { user: NavbarSessionUser }) {
         className="flex items-center gap-2 rounded-full border border-navy-200/60 bg-white py-1.5 pr-4 pl-1.5 text-lg font-medium whitespace-nowrap text-navy-500 transition-colors hover:bg-pastel-50"
       >
         <Avatar user={user} />
-        <span className="max-w-32 truncate">{user.name ?? user.email}</span>
+        <span className="max-w-64 truncate">{user.name ?? user.email}</span>
       </button>
 
       {isOpen && (

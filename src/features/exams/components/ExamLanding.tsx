@@ -20,17 +20,9 @@ function buildStats(exams: ExamListItem[]) {
 export function ExamHero({ exams }: { exams: ExamListItem[] }) {
   const stats = buildStats(exams);
   return (
-    <header className="mx-auto max-w-3xl space-y-4 text-center">
-      <span className="ds-chip">Phòng thi thử trực tuyến chuẩn THPTQG</span>
-      <h1>
-        Rèn bản lĩnh phòng thi, bứt phá <span className="text-navy-300">điểm 9+</span>
-      </h1>
-      <p className="text-navy-400">
-        Hệ thống thi thử bấm giờ thực chiến với ngân hàng đề bám sát ma trận mới
-        nhất. Tự động chấm điểm, phân tích phổ điểm và xem lời giải chi tiết
-        từng câu.
-      </p>
-      <dl className="grid grid-cols-2 gap-3 pt-4 md:grid-cols-4">
+    <header className="space-y-4">
+      <h1>Phòng thi thử</h1>
+      <dl className="grid grid-cols-2 gap-3 md:grid-cols-4">
         {stats.map((stat) => (
           <div key={stat.label} className="rounded-3xl border border-navy-100 bg-white px-3 py-4">
             <dt className="sr-only">{stat.label}</dt>

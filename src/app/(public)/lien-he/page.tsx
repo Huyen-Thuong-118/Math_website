@@ -2,14 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronDown, Globe, MapPin, Phone, Clock3 } from "lucide-react";
 
+import { auth } from "@/auth";
 import { MapModal } from "@/features/notifications/components/MapModal";
 import { CONTACT, SUPPORT_POLICIES } from "@/features/notifications/contact-mock";
 
 export const metadata: Metadata = { title: "Liên hệ | BQD Math" };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const session = await auth();
+  const isStudent = session?.user?.role === "STUDENT";
   return (
     <div className="ds space-y-10">
+      {isStudent ? (
+        <h1>Liên hệ</h1>
+      ) : (
       <header className="rounded-3xl bg-linear-to-br from-white to-pastel-100 p-6 sm:p-10">
         <span className="ds-chip">Kết nối với thầy cô BQD</span>
         <h1 className="mt-4 max-w-2xl">
@@ -21,6 +27,7 @@ export default function ContactPage() {
           điểm 9+ môn Toán THPTQG.
         </p>
       </header>
+      )}
 
       <section className="space-y-4">
         <h2 className="text-center">Liên hệ trực tiếp theo nhu cầu</h2>
@@ -85,6 +92,7 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {!isStudent && (
       <section className="rounded-3xl bg-linear-to-br from-navy-500 to-galaxy-800 p-8 text-pastel-50 sm:p-10">
         <span className="text-xs font-semibold tracking-wide text-pastel-300 uppercase">Sẵn sàng bứt phá</span>
         <h2 className="mt-2 max-w-xl text-white">Tham gia lớp học cùng Thầy Dũng ngay tuần này</h2>
@@ -96,6 +104,7 @@ export default function ContactPage() {
           <Link href="/lop-hoc" className="inline-flex min-h-11 items-center rounded-full border border-white/30 px-6 text-sm font-semibold text-white hover:bg-white/10">Xem thông tin lớp học</Link>
         </div>
       </section>
+      )}
     </div>
   );
 }
