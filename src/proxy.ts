@@ -18,7 +18,7 @@ export default auth(async (req) => {
   const user = req.auth?.user;
 
   const isAdminRoute = pathname.startsWith("/admin");
-  const isStudentRoute = ["/lop-hoc", "/lich-hoc", "/on-tap", "/thi-thu", "/tai-lieu", "/thong-bao", "/theo-doi-hoc-tap"].some(
+  const isStudentRoute = ["/lop-hoc", "/lich-hoc", "/on-tap", "/thi-thu", "/tai-lieu", "/thong-bao", "/tai-khoan/theo-doi-hoc-tap"].some(
     (p) => pathname.startsWith(p),
   );
 
@@ -97,6 +97,6 @@ export const config = {
     "/thi-thu/:path*",
     "/tai-lieu/:path*",
     "/thong-bao/:path*",
-    "/theo-doi-hoc-tap/:path*",
+    "/tai-khoan/theo-doi-hoc-tap/:path*",
   ],
 };

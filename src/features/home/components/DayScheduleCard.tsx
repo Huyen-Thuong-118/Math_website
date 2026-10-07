@@ -85,17 +85,17 @@ export function DayScheduleCard({
             const status = statusMap?.get(session.id);
             const isCurrent = status === "current";
             const isNext = status === "next";
-            return <li key={session.id} className={cn("schedule-session-card rounded-2xl border p-3.5 transition-colors", isCurrent ? "border-green-300 bg-green-50/80" : "border-white/50 bg-white/45 group-hover:bg-white/65")}>
-              <div className={cn("flex flex-wrap items-center gap-2 text-base font-medium", isCurrent ? "text-green-700" : "text-navy-500")}>
-                <Clock className={cn("size-4 shrink-0", isCurrent ? "text-green-500" : "text-navy-300")} aria-hidden />
+            return <li key={session.id} className={cn("schedule-session-card rounded-2xl border p-3.5 transition-colors", isCurrent ? "border-green-300 bg-green-50/80" : isNext ? "border-amber-300 bg-amber-50/80" : "border-white/50 bg-white/45 group-hover:bg-white/65")}>
+              <div className={cn("flex flex-wrap items-center gap-2 text-base font-medium", isCurrent ? "text-green-700" : isNext ? "text-amber-700" : "text-navy-500")}>
+                <Clock className={cn("size-4 shrink-0", isCurrent ? "text-green-500" : isNext ? "text-amber-500" : "text-navy-300")} aria-hidden />
                 <time>
                   {session.startTime} - {session.endTime}
                 </time>
                 {isCurrent && <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-0.5 text-[10px] font-semibold text-green-700"><span className="size-1.5 rounded-full bg-green-500" aria-hidden />Đang diễn ra</span>}
-                {isNext && <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-700">Sắp diễn ra</span>}
+                {isNext && <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700">Sắp diễn ra</span>}
               </div>
 
-              <p className={cn("mt-1 text-sm", isCurrent ? "text-green-600" : "text-navy-400")}>{session.className}</p>
+              <p className={cn("mt-1 text-sm", isCurrent ? "text-green-600" : isNext ? "text-amber-600" : "text-navy-400")}>{session.className}</p>
 
               <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
                 <span

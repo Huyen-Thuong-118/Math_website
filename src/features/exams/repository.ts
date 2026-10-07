@@ -38,7 +38,7 @@ export async function saveAnswerBatchForUser(
   userId: string,
   payload: AnswerBatchPayload,
 ) {
-  if (payload.changes.length === 0) return { count: 0 };
+  if (payload.changes.length === 0) return { count: 0, acknowledgedEventIds: [] as string[] };
   return db.$transaction(async (tx) => {
     // Khóa row attempt để autosave cuối và submit không vượt nhau.
     await tx.$queryRaw(Prisma.sql`SELECT "id" FROM "ExamAttempt" WHERE "id" = ${payload.attemptId} AND "userId" = ${userId} FOR UPDATE`);

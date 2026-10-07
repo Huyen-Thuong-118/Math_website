@@ -17,6 +17,15 @@ dns.setDefaultResultOrder("ipv4first");
  */
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
+/**
+ * pg-connection-string cảnh báo khi URL có sslmode=prefer/require/verify-ca vì
+ * chúng đang được coi như verify-full (sẽ đổi nghĩa ở pg v9). Ghi rõ verify-full
+ * để giữ đúng hành vi hiện tại và hết cảnh báo, không cần sửa .env.
+ */
+function withExplicitSslMode(connectionString: string): string {
+  return connectionString.replace(/([?&]sslmode=)(prefer|require|verify-ca)(?=&|$)/, "$1verify-full");
+}
+
 function createPrismaClient() {
   const cloudSqlConnectionName = process.env.CLOUD_SQL_CONNECTION_NAME?.trim();
   let adapter: PrismaPg;
@@ -55,7 +64,7 @@ function createPrismaClient() {
     if (!connectionString) {
       throw new Error("Thiếu DATABASE_URL hoặc CLOUD_SQL_CONNECTION_NAME.");
     }
-    adapter = new PrismaPg({ connectionString, max: 3 });
+    adapter = new PrismaPg({ connectionString: withExplicitSslMode(connectionString), max: 3 });
   }
 
   return new PrismaClient({ adapter });

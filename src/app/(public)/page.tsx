@@ -8,5 +8,5 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const view = await getHomeScheduleView();
-  return <><HeroSection /><ExamCountdown />{view.kind === "STUDENT" ? <StudentScheduleSection studentName={view.studentName} schedule={view.schedule} classCount={view.classCount} sessionCount={view.sessionCount} /> : <ScheduleSection schedule={view.schedule} />}</>;
+  return <>{view.kind !== "STUDENT" && <HeroSection />}<ExamCountdown />{view.kind === "STUDENT" ? <StudentScheduleSection studentName={view.studentName} schedule={view.schedule} classCount={view.classCount} sessionCount={view.sessionCount} /> : <ScheduleSection schedule={view.schedule} />}</>;
 }

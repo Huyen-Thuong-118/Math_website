@@ -1,0 +1,1498 @@
+<!DOCTYPE html><html class="h-full bg-slate-100" lang="vi" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Phòng Làm Bài Thi Trực Tuyến - BQD Math Chuẩn THPTQG 2025</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#1b2a4a',
+              blue: '#0284c7',
+              accent: '#f97316',
+              sheetRed: '#d94b63',
+              sheetBg: '#ffffff',
+              bubbleActive: '#1e293b'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Comfortaa', 'sans-serif'],
+            serif: ['"Noto Serif"', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: CustomStyles -->
+<style data-purpose="exam-paper-style">
+    /* Hiệu ứng bong bóng tô chì 2B chuẩn quang học OMR */
+    .bubble-input {
+      appearance: none;
+      -webkit-appearance: none;
+      border: 1.5px solid #d94b63;
+      border-radius: 9999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: #d94b63;
+      background-color: #ffffff;
+      transition: all 0.15s ease-in-out;
+      user-select: none;
+    }
+    .bubble-input:hover {
+      background-color: #fee2e2;
+      border-color: #b91c1c;
+    }
+    .bubble-input.is-filled {
+      background-color: #1e293b !important;
+      border-color: #0f172a !important;
+      color: #ffffff !important;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.6);
+    }
+    .bubble-circle {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      min-height: 22px;
+    }
+    .bubble-circle-sm {
+      width: 19px;
+      height: 19px;
+      min-width: 19px;
+      min-height: 19px;
+      font-size: 10px;
+    }
+
+    /* Viền đỏ đặc thù của phiếu thi THPTQG */
+    .sheet-border-red {
+      border: 1.5px solid #d94b63;
+    }
+    .sheet-text-red {
+      color: #c02643;
+    }
+
+    /* Watermark chống sao chép đề */
+    .watermark-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: repeating-linear-gradient(
+        -35deg,
+        rgba(27, 42, 74, 0.02),
+        rgba(27, 42, 74, 0.02) 120px,
+        rgba(27, 42, 74, 0.045) 120px,
+        rgba(27, 42, 74, 0.045) 240px
+      );
+    }
+
+    /* Thanh cuộn chuyên nghiệp */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+<!-- END: CustomStyles -->
+</head>
+<body class="h-full flex flex-col font-sans text-slate-800 antialiased overflow-hidden select-none">
+<!-- BEGIN: FixedTopHeader -->
+<header class="h-16 flex-none bg-[#1b2a4a] text-white px-4 lg:px-6 shadow-md z-40 flex items-center justify-between border-b border-slate-700">
+<!-- Cột trái: Thương hiệu & Thông tin thí sinh -->
+<div class="flex items-center space-x-4 min-w-0">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-xl bg-sky-500/20 border border-sky-400/40 flex items-center justify-center font-heading font-black text-xl text-sky-400">
+          B
+        </div>
+<div>
+<div class="flex items-center space-x-2">
+<h1 class="text-sm font-bold tracking-tight text-white flex items-center gap-1.5">
+<span class="">BQD Math</span>
+<span class="text-[10px] font-mono bg-sky-600/60 px-1.5 py-0.5 rounded text-sky-100 uppercase tracking-wider">THPTQG 2025</span>
+</h1>
+<span class="text-xs text-slate-400 hidden md:inline">|</span>
+<span class="text-xs text-sky-200 font-medium truncate hidden md:inline">Mã đề: <strong class="text-white font-mono">BQD-KS09</strong></span>
+</div>
+<p class="text-xs text-slate-300 truncate max-w-[260px] lg:max-w-md">Khảo Sát Đặc Biệt Số 09 - Toán Chuẩn GD&amp;ĐT</p>
+</div>
+</div>
+<!-- Thí sinh -->
+
+</div>
+<!-- Cột giữa: Tiến độ & Tỷ lệ hiển thị -->
+<div class="hidden lg:flex items-center space-x-6">
+<!-- Tiến độ làm bài -->
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-between w-48 text-[11px] mb-1 text-slate-300">
+<span class="">Tiến độ bài làm</span>
+<span class="font-bold text-sky-300 font-mono" id="progress-text">22 / 34 câu (65%)</span>
+</div>
+<div class="w-48 h-2 bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-sky-400 to-emerald-400 transition-all duration-300 rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+<!-- Trạng thái giám sát & kết nối -->
+
+<!-- Tùy chọn chia tỉ lệ màn hình -->
+
+</div>
+<!-- Cột phải: ĐỒNG HỒ ĐẾM NGƯỢC CỐ ĐỊNH & NÚT NỘP BÀI NHANH -->
+<div class="flex items-center space-x-3">
+<!-- Cụm đếm ngược kỹ thuật số cao cấp -->
+<div class="flex items-center space-x-2 bg-gradient-to-r from-red-950/80 to-slate-900 border border-red-500/50 px-3 py-1.5 rounded-xl shadow-inner shadow-red-950"><div class="w-7 h-7 rounded-lg bg-red-600/30 text-red-400 flex items-center justify-center animate-pulse"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div><span class="font-mono text-xl font-black tracking-tight text-white" id="exam-timer">76:34</span></div>
+<!-- Nút Lưu bài -->
+
+<!-- Nút Nộp bài thi Header -->
+<button class="px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs md:text-sm rounded-lg shadow-md hover:shadow-lg transition flex items-center space-x-1.5 border border-emerald-400/40" onclick="openSubmitModal()">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="">NỘP BÀI THI</span>
+</button>
+</div>
+</header>
+<!-- END: FixedTopHeader -->
+<!-- BEGIN: MainContentSplitArea -->
+<main class="flex-1 flex overflow-hidden relative" id="split-container">
+<!-- BEGIN: LeftExamViewer (Cột Đề Thi PDF) -->
+<section class="w-1/2 flex flex-col bg-slate-200 border-r border-slate-300 relative overflow-hidden transition-all duration-75" id="left-pane">
+<!-- Toolbar công cụ xem đề thi -->
+<div class="h-11 flex-none bg-slate-800 text-slate-200 px-3 flex items-center justify-between border-b border-slate-700 shadow-sm text-xs">
+<div class="flex items-center space-x-2">
+<span class="font-semibold text-white tracking-wide flex items-center gap-1.5">
+<svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            ĐỀ THI GỐC (PDF)
+          </span>
+<span class="text-slate-400">|</span>
+<!-- Bộ chuyển trang -->
+<div class="flex items-center space-x-1 bg-slate-900/80 px-2 py-0.5 rounded border border-slate-700">
+<button class="hover:text-white px-1 text-slate-400 font-bold">‹</button>
+<span class="text-sky-300 font-mono font-medium">Trang 1 / 4</span>
+<button class="hover:text-white px-1 text-slate-400 font-bold">›</button>
+</div>
+</div>
+<!-- Công cụ Phóng to / Thu nhỏ / Vừa màn hình -->
+<div class="flex items-center space-x-1.5">
+<button class="w-7 h-7 flex items-center justify-center rounded bg-slate-700 hover:bg-slate-600 text-white font-bold transition" onclick="adjustZoom(-10)" title="Thu nhỏ (-)">
+            -
+          </button>
+<span class="px-2 font-mono text-slate-300 font-semibold" id="zoom-indicator">100%</span>
+<button class="w-7 h-7 flex items-center justify-center rounded bg-slate-700 hover:bg-slate-600 text-white font-bold transition" onclick="adjustZoom(10)" title="Phóng to (+)">
+            +
+          </button>
+<button class="px-2 h-7 flex items-center justify-center rounded bg-slate-700 hover:bg-slate-600 text-slate-200 transition text-[11px]" onclick="resetZoom()" title="Vừa chiều rộng">
+            Vừa khung
+          </button>
+<button class="w-7 h-7 flex items-center justify-center rounded bg-slate-700 hover:bg-slate-600 text-slate-200 transition" title="Toàn màn hình đề">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</div>
+<!-- Không gian cuộn trang giấy đề thi PDF -->
+<div class="flex-1 overflow-y-auto p-4 md:p-6 flex justify-center bg-slate-300/80" id="pdf-scroll-area">
+<!-- Tờ giấy đề thi PDF -->
+<article class="w-full max-w-3xl bg-white shadow-2xl rounded-sm p-6 md:p-10 font-serif relative border border-slate-200 transition-transform origin-top text-slate-900 leading-relaxed text-sm" id="pdf-paper">
+<!-- Watermark -->
+<div class="watermark-overlay"></div>
+<!-- Header Tờ đề thi chính thức -->
+<div class="flex justify-between items-start border-b-2 border-slate-900 pb-4 mb-6">
+<div class="text-center w-5/12">
+<p class="font-bold text-xs uppercase tracking-wider">BỘ GIÁO DỤC VÀ ĐÀO TẠO</p>
+<p class="font-bold text-xs uppercase">ĐỀ THI THAM KHẢO 2025</p>
+<div class="w-16 h-0.5 bg-slate-800 mx-auto my-1"></div>
+<p class="text-[11px] italic font-sans">(Đề thi có 04 trang)</p>
+</div>
+<div class="text-center w-7/12 border-l border-slate-300 pl-4">
+<h2 class="font-bold text-sm uppercase tracking-wide">KỲ THI TỐT NGHIỆP TRUNG HỌC PHỔ THÔNG 2025</h2>
+<p class="font-bold text-xs mt-1 text-slate-800">Bài thi: TOÁN HỌC</p>
+<p class="text-[11px] font-sans text-slate-600">Thời gian làm bài: 90 phút, không kể thời gian phát đề</p>
+<div class="flex justify-center items-center space-x-4 mt-1 font-sans text-[11px]">
+<span class="font-bold">Mã đề thi: <span class="font-mono font-bold text-red-600">BQD-KS09</span></span>
+</div>
+</div>
+</div>
+<!-- PHẦN I: TRẮC NGHIỆM NHIỀU LỰA CHỌN -->
+<div class="mb-6">
+<div class="font-sans font-bold text-xs bg-slate-100 p-2 border-l-4 border-[#1b2a4a] uppercase tracking-wide mb-3 flex justify-between">
+<span class="">PHẦN I. Thí sinh trả lời từ câu 1 đến câu 12. Mỗi câu hỏi chỉ chọn một phương án.</span>
+<span class="text-sky-700 font-mono">(3,0 điểm)</span>
+</div>
+<!-- Câu 1 -->
+<div class="mb-4 text-justify">
+<p class="font-semibold mb-1.5"><strong class="font-bold">Câu 1:</strong> Cho hàm số $y = f(x)$ có bảng biến thiên như hình vẽ. Hàm số đã cho đồng biến trên khoảng nào dưới đây?</p>
+<div class="my-2 p-2 bg-slate-50 border border-slate-200 rounded text-center text-xs font-mono">
+                [Bảng biến thiên: $x$ chạy từ $-\infty \to -1 \to 1 \to +\infty$; $f'(x) &gt; 0$ trên $(-1; 1)$]
+              </div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-2 font-sans text-xs">
+<div class=""><strong>A.</strong> $(-\infty; -1)$.</div>
+<div class=""><strong>B.</strong> $(-1; 1)$.</div>
+<div class=""><strong>C.</strong> $(1; +\infty)$.</div>
+<div class=""><strong>D.</strong> $(0; 2)$.</div>
+</div>
+</div>
+<!-- Câu 2 -->
+<div class="mb-4 text-justify">
+<p class="font-semibold mb-1.5"><strong class="font-bold">Câu 2:</strong> Cho hàm số $f(x) = \sin 2x$. Trong các khẳng định sau, khẳng định nào đúng?</p>
+<div class="grid grid-cols-2 gap-2 font-sans text-xs">
+<div class=""><strong>A.</strong> $\int f(x)dx = -\frac{1}{2}\cos 2x + C$.</div>
+<div class=""><strong>B.</strong> $\int f(x)dx = \frac{1}{2}\cos 2x + C$.</div>
+<div class=""><strong>C.</strong> $\int f(x)dx = -2\cos 2x + C$.</div>
+<div class=""><strong>D.</strong> $\int f(x)dx = 2\cos 2x + C$.</div>
+</div>
+</div>
+<!-- Câu 3 -->
+<div class="mb-4 text-justify">
+<p class="font-semibold mb-1.5"><strong class="font-bold">Câu 3:</strong> Trong không gian $Oxyz$, cho mặt cầu $(S): (x-1)^2 + (y+2)^2 + (z-3)^2 = 16$. Tâm $I$ và bán kính $R$ của $(S)$ là:</p>
+<div class="grid grid-cols-2 gap-2 font-sans text-xs">
+<div class=""><strong>A.</strong> $I(-1; 2; -3), R = 16$.</div>
+<div class=""><strong>B.</strong> $I(1; -2; 3), R = 16$.</div>
+<div class=""><strong>C.</strong> $I(1; -2; 3), R = 4$.</div>
+<div class=""><strong>D.</strong> $I(-1; 2; -3), R = 4$.</div>
+</div>
+</div>
+<!-- Câu 4 -->
+<div class="mb-4 text-justify">
+<p class="font-semibold mb-1.5"><strong class="font-bold">Câu 4:</strong> Tập nghiệm của bất phương trình $\log_2(x - 1) &lt; 3$ là:</p>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-2 font-sans text-xs">
+<div class=""><strong>A.</strong> $(-\infty; 9)$.</div>
+<div class=""><strong>B.</strong> $(1; 9)$.</div>
+<div class=""><strong>C.</strong> $(1; 10)$.</div>
+<div class=""><strong>D.</strong> $(1; 8)$.</div>
+</div>
+</div>
+</div>
+<!-- PHẦN II: TRẮC NGHIỆM ĐÚNG SAI -->
+<div class="mb-6">
+<div class="font-sans font-bold text-xs bg-slate-100 p-2 border-l-4 border-[#1b2a4a] uppercase tracking-wide mb-3 flex justify-between">
+<span class="">PHẦN II. Thí sinh trả lời từ câu 1 đến câu 4. Trong mỗi ý a), b), c), d), chọn Đúng hoặc Sai.</span>
+<span class="text-sky-700 font-mono">(4,0 điểm)</span>
+</div>
+<!-- Câu 1 Phần II -->
+<div class="mb-5 bg-slate-50/70 p-3 rounded border border-slate-200">
+<p class="font-semibold mb-2">
+<strong class="font-bold">Câu 1:</strong> Cho hàm số bậc ba $y = f(x) = ax^3 + bx^2 + cx + d$ có đồ thị $(C)$ đi qua gốc tọa độ $O$ và có điểm cực trị là $A(1; -2)$ và $B(-1; 2)$.
+              </p>
+<div class="space-y-1.5 font-sans text-xs pl-2">
+<div class="flex items-baseline space-x-2">
+<span class="font-bold text-sky-800">a)</span>
+<span class="">Hàm số đã cho nghịch biến trên khoảng $(-1; 1)$.</span>
+</div>
+<div class="flex items-baseline space-x-2">
+<span class="font-bold text-sky-800">b)</span>
+<span class="">Phương trình tiếp tuyến của đồ thị $(C)$ tại điểm uốn $O(0;0)$ có hệ số góc bằng $-3$.</span>
+</div>
+<div class="flex items-baseline space-x-2">
+<span class="font-bold text-sky-800">c)</span>
+<span class="">Hàm số $g(x) = |f(x)|$ có tổng cộng 5 điểm cực trị.</span>
+</div>
+<div class="flex items-baseline space-x-2">
+<span class="font-bold text-sky-800">d)</span>
+<span class="">Diện tích hình phẳng giới hạn bởi đồ thị $(C)$ và trục hoành bằng 4 (đvdt).</span>
+</div>
+</div>
+</div>
+<!-- Câu 2 Phần II (Mô phỏng như ảnh đề minh họa Toán) -->
+<div class="mb-5 bg-slate-50/70 p-3 rounded border border-slate-200">
+<p class="font-semibold mb-2">
+<strong class="font-bold">Câu 2:</strong> Cho hàm số $y = f'(x)$ liên tục trên $\mathbb{R}$ có đồ thị cắt trục hoành tại 3 điểm $x \in \{-1; 1; 4\}$. Xét tính đúng/sai của các mệnh đề sau:
+              </p>
+<!-- Giả lập đồ thị hàm f'(x) -->
+<div class="my-2 p-2 bg-white rounded border border-slate-200 text-center">
+<div class="text-[11px] font-sans text-slate-500 italic mb-1">[Đồ thị $y=f'(x)$ cắt $Ox$ tại $x=-1$, $x=1$, $x=4$; đổi dấu từ $(-)$ sang $(+)$ tại $x=-1$]</div>
+<div class="h-28 w-full max-w-sm mx-auto flex items-center justify-center bg-slate-50 rounded text-xs font-mono text-slate-600 border border-dashed border-slate-300">
+                  y = f'(x) Curve: Cắt (-1;0), (1;0), (4;0)
+                </div>
+</div>
+<div class="space-y-1.5 font-sans text-xs pl-2">
+<div class="flex items-baseline space-x-2"><span class="font-bold text-sky-800">a)</span><span class="">Hàm số $g(x) = f(x)$ đồng biến trên khoảng $(1; 4)$.</span></div>
+<div class="flex items-baseline space-x-2"><span class="font-bold text-sky-800">b)</span><span class="">Điểm cực đại của hàm số $y = f(x)$ là $x = 1$.</span></div>
+<div class="flex items-baseline space-x-2"><span class="font-bold text-sky-800">c)</span><span class="">Hàm số $h(x) = 2f(x) - x^2 + 2x$ đạt giá trị nhỏ nhất trên $[-1; 4]$ tại $x = -1$.</span></div>
+<div class="flex items-baseline space-x-2"><span class="font-bold text-sky-800">d)</span><span class="">Phương trình $f(x^2 - 2x) = m$ có tối đa 6 nghiệm thực phân biệt.</span></div>
+</div>
+</div>
+</div>
+<!-- PHẦN III: TRẮC NGHIỆM TRẢ LỜI NGẮN -->
+<div class="mb-4">
+<div class="font-sans font-bold text-xs bg-slate-100 p-2 border-l-4 border-[#1b2a4a] uppercase tracking-wide mb-3 flex justify-between">
+<span class="">PHẦN III. Thí sinh trả lời từ câu 1 đến câu 6. Viết kết quả vào ô tương ứng.</span>
+<span class="text-sky-700 font-mono">(3,0 điểm)</span>
+</div>
+<div class="space-y-3 font-sans text-xs">
+<div class="p-2.5 bg-slate-50 rounded border border-slate-200">
+<p class="font-serif text-sm font-semibold mb-1"><strong class="font-bold font-sans text-xs">Câu 1:</strong> Một chất điểm chuyển động với phương trình $s(t) = -t^3 + 6t^2 + 15t$, trong đó $t$ tính bằng giây và $s$ tính bằng mét. Vận tốc tức thời của chất điểm đạt giá trị lớn nhất bằng bao nhiêu m/s?</p>
+</div>
+<div class="p-2.5 bg-slate-50 rounded border border-slate-200">
+<p class="font-serif text-sm font-semibold mb-1"><strong class="font-bold font-sans text-xs">Câu 2:</strong> Một người gửi 100 triệu đồng vào ngân hàng theo thể thức lãi kép kỳ hạn 1 tháng với lãi suất $0,6\%$/tháng. Hỏi sau ít nhất bao nhiêu tháng thì người đó nhận được số tiền cả vốn lẫn lãi trên 150 triệu đồng?</p>
+</div>
+<div class="p-2.5 bg-slate-50 rounded border border-slate-200">
+<p class="font-serif text-sm font-semibold mb-1"><strong class="font-bold font-sans text-xs">Câu 3:</strong> Trong không gian $Oxyz$, khoảng cách giữa hai mặt phẳng song song $(\alpha): 2x - 2y + z + 5 = 0$ và $(\beta): 2x - 2y + z - 1 = 0$ bằng bao nhiêu?</p>
+</div>
+</div>
+</div>
+<!-- Footer của đề thi -->
+<div class="text-center font-sans text-xs text-slate-500 pt-6 border-t border-slate-200 mt-6">
+<p class="font-semibold text-slate-700">------------- HẾT ĐỀ THI -------------</p>
+<p class="italic text-[11px] mt-1">Cán bộ coi thi không giải thích gì thêm. Thí sinh tô đáp án trực tiếp vào Phiếu trả lời trắc nghiệm.</p>
+</div>
+</article>
+</div>
+</section>
+<!-- END: LeftExamViewer -->
+<!-- BEGIN: SplitterDivider (Thanh co giãn 2 bên) -->
+<div class="w-2.5 bg-slate-300 hover:bg-sky-500 active:bg-sky-600 transition-colors flex items-center justify-center cursor-col-resize z-30 shadow-sm" id="drag-splitter" title="Kéo để thay đổi độ rộng 2 cột">
+<div class="w-1 h-8 rounded-full bg-slate-500/80 flex flex-col justify-between py-1 items-center">
+<span class="w-0.5 h-0.5 rounded-full bg-white"></span>
+<span class="w-0.5 h-0.5 rounded-full bg-white"></span>
+<span class="w-0.5 h-0.5 rounded-full bg-white"></span>
+</div>
+</div>
+<!-- END: SplitterDivider -->
+<!-- BEGIN: RightAnswerSheet (Phiếu Trả Lời Trắc Nghiệm Mô Phỏng) -->
+<section class="w-1/2 flex flex-col bg-slate-100 overflow-y-auto relative" id="right-pane"><!-- Tab bộ lọc phân đoạn nhanh giúp chuyển đổi dễ dàng trên màn hình chia đôi -->
+<div class="sticky top-0 z-20 bg-slate-100/95 backdrop-blur-sm border-b border-slate-200 px-4 py-2 flex items-center justify-between shadow-sm">
+  <div class="flex items-center space-x-1 overflow-x-auto text-xs py-0.5">
+    <button onclick="filterSection('all')" id="tab-all" class="px-3 py-1.5 rounded-lg bg-[#1b2a4a] text-white font-semibold shadow-sm transition">
+      Tất cả phần
+    </button>
+    <button onclick="filterSection('sec-p1')" id="tab-sec-p1" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-sky-50 hover:text-sky-800 font-medium transition">
+      Phần I (12 câu)
+    </button>
+    <button onclick="filterSection('sec-p2')" id="tab-sec-p2" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-sky-50 hover:text-sky-800 font-medium transition flex items-center gap-1">
+      <span class="">Phần II (Đúng/Sai)</span>
+      <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+    </button>
+    <button onclick="filterSection('sec-p3')" id="tab-sec-p3" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-sky-50 hover:text-sky-800 font-medium transition flex items-center gap-1">
+      <span class="">Phần III (Điền số)</span>
+      <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+    </button>
+  </div>
+  <div class="hidden md:flex items-center space-x-2 text-[11px] text-slate-500">
+    <span class="">Tiến độ: <b class="text-sky-700 font-mono font-bold">28/34</b></span>
+  </div>
+</div>
+
+<div class="p-3 md:p-5 flex justify-center">
+  <!-- Khung Phiếu Thi Tông Màu Xanh BQD Navy Hiện Đại -->
+  <div class="w-full max-w-2xl bg-white shadow-xl rounded-xl border-2 border-slate-300 p-4 md:p-6 text-slate-800 text-xs relative">
+    <!-- Họa tiết định vị OMR 4 góc Navy chuẩn thi -->
+    <div class="w-4 h-4 bg-[#1b2a4a] absolute top-3 left-3 rounded-sm"></div>
+    <div class="w-4 h-4 bg-[#1b2a4a] absolute top-3 right-3 rounded-sm"></div>
+    <div class="w-4 h-4 bg-[#1b2a4a] absolute bottom-3 left-3 rounded-sm"></div>
+    <div class="w-4 h-4 bg-[#1b2a4a] absolute bottom-3 right-3 rounded-sm"></div>
+
+    <!-- HEADER PHIẾU THI TÔNG NAVY -->
+    <header class="text-center mb-4 pt-1">
+      <h2 class="text-base md:text-lg font-black uppercase tracking-wider text-[#1b2a4a] font-heading">
+        PHIẾU TRẢ LỜI TRẮC NGHIỆM
+      </h2>
+      <p class="text-xs font-semibold text-slate-600 mt-0.5">KỲ THI TỐT NGHIỆP TRUNG HỌC PHỔ THÔNG NĂM 2025</p>
+      <div class="text-[11px] text-slate-600 mt-1 flex justify-center space-x-6">
+        <span class="">Môn thi: <strong class="text-[#1b2a4a] font-bold">TOÁN</strong></span>
+        <span class="">Ngày thi: <strong class="text-[#1b2a4a] font-bold">28/06/2025</strong></span>
+      </div>
+    </header>
+
+    <!-- BẢNG THÔNG TIN SỐ BÁO DANH & MÃ ĐỀ (TÔNG XANH NAVY/SKY) -->
+    
+
+    <!-- QUY TẮC TÔ CHÌ CHUẨN XANH -->
+    <div class="mb-5 p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between text-[11px]">
+      <div class="flex items-center space-x-2">
+        <span class="font-bold text-[#1b2a4a]">Quy tắc tô chì:</span>
+        <span class="text-slate-600">Click trực tiếp vào ô để tô tròn đều như bút chì 2B.</span>
+      </div>
+      <div class="flex items-center space-x-3">
+        <span class="inline-flex items-center gap-1.5 text-emerald-700 font-semibold">
+          <span class="bubble-input bubble-circle-sm is-filled text-[10px]">A</span> Đã tô
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-slate-500 font-medium">
+          <span class="bubble-input bubble-circle-sm text-[10px]">B</span> Chưa tô
+        </span>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PHẦN I: CÂU TRẮC NGHIỆM NHIỀU LỰA CHỌN -->
+    <!-- ========================================== -->
+    <section id="section-part-1" class="mb-6 scroll-mt-14">
+      <div class="flex items-center justify-between border-b-2 border-[#1b2a4a] pb-1.5 mb-3">
+        <h3 class="font-black text-sm uppercase text-[#1b2a4a] flex items-center gap-2 font-heading">
+          <span class="w-3 h-3 bg-[#1b2a4a] rounded-sm inline-block"></span>
+          PHẦN I (12 Câu - Mỗi câu chọn 1 đáp án)
+        </h3>
+        <span class="text-[11px] font-semibold text-slate-600 bg-sky-100/60 px-2 py-0.5 rounded-full border border-sky-200">
+          Đã làm: <b class="text-sky-800" id="part1-count">10</b>/12
+        </span>
+      </div>
+      <!-- Bố cục 3 cột -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <!-- Cột 1: Câu 1 - 4 -->
+        <div class="border border-sky-200 rounded-xl p-2.5 bg-white space-y-2.5 shadow-sm">
+          <div class="grid grid-cols-5 text-center font-bold text-sky-800 text-[11px] pb-1 border-b border-sky-100">
+            <span class="">Câu</span><span class="">A</span><span class="">B</span><span class="">C</span><span class="">D</span>
+          </div>
+          <!-- Câu 1 -->
+          <div class="grid grid-cols-5 items-center text-center py-0.5">
+            <span class="font-bold text-[#1b2a4a] text-xs">1</span>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c1')">A</button></div>
+            <div><button class="bubble-input bubble-circle is-filled" onclick="toggleBubble(this, 'p1-c1')">B</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c1')">C</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c1')">D</button></div>
+          </div>
+          <!-- Câu 2 -->
+          <div class="grid grid-cols-5 items-center text-center py-0.5">
+            <span class="font-bold text-[#1b2a4a] text-xs">2</span>
+            <div><button class="bubble-input bubble-circle is-filled" onclick="toggleBubble(this, 'p1-c2')">A</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c2')">B</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c2')">C</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c2')">D</button></div>
+          </div>
+          <!-- Câu 3 -->
+          <div class="grid grid-cols-5 items-center text-center py-0.5">
+            <span class="font-bold text-[#1b2a4a] text-xs">3</span>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c3')">A</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c3')">B</button></div>
+            <div><button class="bubble-input bubble-circle is-filled" onclick="toggleBubble(this, 'p1-c3')">C</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c3')">D</button></div>
+          </div>
+          <!-- Câu 4 -->
+          <div class="grid grid-cols-5 items-center text-center py-0.5">
+            <span class="font-bold text-[#1b2a4a] text-xs">4</span>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c4')">A</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c4')">B</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c4')">C</button></div>
+            <div><button class="bubble-input bubble-circle is-filled" onclick="toggleBubble(this, 'p1-c4')">D</button></div>
+          </div>
+        </div>
+        <!-- Cột 2: Câu 5 - 8 -->
+        <div class="border border-sky-200 rounded-xl p-2.5 bg-white space-y-2.5 shadow-sm">
+          <div class="grid grid-cols-5 text-center font-bold text-sky-800 text-[11px] pb-1 border-b border-sky-100">
+            <span class="">Câu</span><span class="">A</span><span class="">B</span><span class="">C</span><span class="">D</span>
+          </div>
+          <!-- Câu 5 -->
+          <div class="grid grid-cols-5 items-center text-center py-0.5">
+            <span class="font-bold text-[#1b2a4a] text-xs">5</span>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c5')">A</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c5')">B</button></div>
+            <div><button class="bubble-input bubble-circle is-filled" onclick="toggleBubble(this, 'p1-c5')">C</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c5')">D</button></div>
+          </div>
+          <!-- Câu 6 -->
+          <div class="grid grid-cols-5 items-center text-center py-0.5">
+            <span class="font-bold text-[#1b2a4a] text-xs">6</span>
+            <div><button class="bubble-input bubble-circle is-filled" onclick="toggleBubble(this, 'p1-c6')">A</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c6')">B</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c6')">C</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c6')">D</button></div>
+          </div>
+          <!-- Câu 7 -->
+          <div class="grid grid-cols-5 items-center text-center py-0.5">
+            <span class="font-bold text-[#1b2a4a] text-xs">7</span>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c7')">A</button></div>
+            <div><button class="bubble-input bubble-circle is-filled" onclick="toggleBubble(this, 'p1-c7')">B</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c7')">C</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c7')">D</button></div>
+          </div>
+          <!-- Câu 8 -->
+          <div class="grid grid-cols-5 items-center text-center py-0.5">
+            <span class="font-bold text-[#1b2a4a] text-xs">8</span>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c8')">A</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c8')">B</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c8')">C</button></div>
+            <div><button class="bubble-input bubble-circle is-filled" onclick="toggleBubble(this, 'p1-c8')">D</button></div>
+          </div>
+        </div>
+        <!-- Cột 3: Câu 9 - 12 -->
+        <div class="border border-sky-200 rounded-xl p-2.5 bg-white space-y-2.5 shadow-sm">
+          <div class="grid grid-cols-5 text-center font-bold text-sky-800 text-[11px] pb-1 border-b border-sky-100">
+            <span class="">Câu</span><span class="">A</span><span class="">B</span><span class="">C</span><span class="">D</span>
+          </div>
+          <!-- Câu 9 (Chưa điền) -->
+          <div class="grid grid-cols-5 items-center text-center bg-amber-50/70 border border-amber-200 rounded-lg py-0.5">
+            <span class="font-bold text-amber-800 text-xs">9</span>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c9')">A</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c9')">B</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c9')">C</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c9')">D</button></div>
+          </div>
+          <!-- Câu 10 -->
+          <div class="grid grid-cols-5 items-center text-center py-0.5">
+            <span class="font-bold text-[#1b2a4a] text-xs">10</span>
+            <div><button class="bubble-input bubble-circle is-filled" onclick="toggleBubble(this, 'p1-c10')">A</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c10')">B</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c10')">C</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c10')">D</button></div>
+          </div>
+          <!-- Câu 11 (Chưa điền) -->
+          <div class="grid grid-cols-5 items-center text-center bg-amber-50/70 border border-amber-200 rounded-lg py-0.5">
+            <span class="font-bold text-amber-800 text-xs">11</span>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c11')">A</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c11')">B</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c11')">C</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c11')">D</button></div>
+          </div>
+          <!-- Câu 12 -->
+          <div class="grid grid-cols-5 items-center text-center py-0.5">
+            <span class="font-bold text-[#1b2a4a] text-xs">12</span>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c12')">A</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c12')">B</button></div>
+            <div><button class="bubble-input bubble-circle is-filled" onclick="toggleBubble(this, 'p1-c12')">C</button></div>
+            <div><button class="bubble-input bubble-circle" onclick="toggleBubble(this, 'p1-c12')">D</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- PHẦN II: CÂU TRẮC NGHIỆM ĐÚNG SAI -->
+    <!-- ========================================== -->
+    <section id="section-part-2" class="mb-6 scroll-mt-14"><div class="flex items-center justify-between border-b-2 border-[#1b2a4a] pb-1.5 mb-3">
+        <h3 class="font-black text-sm uppercase text-[#1b2a4a] flex items-center gap-2 font-heading">
+          <span class="w-3 h-3 bg-[#1b2a4a] rounded-sm inline-block"></span>
+          PHẦN II (4 CÂU ĐÚNG / SAI - 16 LỆNH HỎI)
+        </h3>
+        <span class="text-[11px] font-semibold text-slate-600 bg-sky-100/60 px-2 py-0.5 rounded-full border border-sky-200">
+          Đã làm: <b class="text-sky-800" id="part2-count">14</b>/16 ý
+        </span>
+      </div>
+      <!-- Grid 2 cột mỗi hàng: Hàng 1 (Câu 1, Câu 2), Hàng 2 (Câu 3, Câu 4) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Hàng 1 - Câu 1 -->
+        <div class="border border-sky-200 rounded-xl p-3.5 bg-white shadow-sm">
+          <div class="font-bold text-[#1b2a4a] border-b border-sky-100 pb-2 mb-3 flex justify-between items-center px-1">
+            <span class="font-bold text-sm text-[#1b2a4a]">Câu 1</span>
+            <span class="text-xs text-sky-800 font-mono font-semibold bg-sky-50 px-2 py-0.5 rounded border border-sky-200">Đúng / Sai</span>
+          </div>
+          <div class="space-y-3 text-xs">
+            <div class="flex items-center justify-between p-1 rounded hover:bg-slate-50">
+              <span class="font-mono font-bold text-slate-700 text-sm">a)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle is-filled" onclick="toggleTrueFalse(this, 'p2-c1-a')">Đ</button>
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c1-a')">S</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-1 rounded hover:bg-slate-50">
+              <span class="font-mono font-bold text-slate-700 text-sm">b)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c1-b')">Đ</button>
+                <button class="bubble-input bubble-circle is-filled" onclick="toggleTrueFalse(this, 'p2-c1-b')">S</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-1 rounded hover:bg-slate-50">
+              <span class="font-mono font-bold text-slate-700 text-sm">c)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle is-filled" onclick="toggleTrueFalse(this, 'p2-c1-c')">Đ</button>
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c1-c')">S</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-1 rounded hover:bg-slate-50">
+              <span class="font-mono font-bold text-slate-700 text-sm">d)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c1-d')">Đ</button>
+                <button class="bubble-input bubble-circle is-filled" onclick="toggleTrueFalse(this, 'p2-c1-d')">S</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Hàng 1 - Câu 2 -->
+        <div class="border border-sky-200 rounded-xl p-3.5 bg-white shadow-sm">
+          <div class="font-bold text-[#1b2a4a] border-b border-sky-100 pb-2 mb-3 flex justify-between items-center px-1">
+            <span class="font-bold text-sm text-[#1b2a4a]">Câu 2</span>
+            <span class="text-xs text-sky-800 font-mono font-semibold bg-sky-50 px-2 py-0.5 rounded border border-sky-200">Đúng / Sai</span>
+          </div>
+          <div class="space-y-3 text-xs">
+            <div class="flex items-center justify-between p-1 rounded hover:bg-slate-50">
+              <span class="font-mono font-bold text-slate-700 text-sm">a)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle is-filled" onclick="toggleTrueFalse(this, 'p2-c2-a')">Đ</button>
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c2-a')">S</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-1 rounded hover:bg-slate-50">
+              <span class="font-mono font-bold text-slate-700 text-sm">b)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c2-b')">Đ</button>
+                <button class="bubble-input bubble-circle is-filled" onclick="toggleTrueFalse(this, 'p2-c2-b')">S</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-1 rounded hover:bg-slate-50">
+              <span class="font-mono font-bold text-slate-700 text-sm">c)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c2-c')">Đ</button>
+                <button class="bubble-input bubble-circle is-filled" onclick="toggleTrueFalse(this, 'p2-c2-c')">S</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-1 rounded hover:bg-slate-50">
+              <span class="font-mono font-bold text-slate-700 text-sm">d)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c2-d')">Đ</button>
+                <button class="bubble-input bubble-circle is-filled" onclick="toggleTrueFalse(this, 'p2-c2-d')">S</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Hàng 2 - Câu 3 (Cảnh báo còn thiếu) -->
+        <div class="border-2 border-amber-300 rounded-xl p-3.5 bg-amber-50/40 shadow-sm">
+          <div class="font-bold text-[#1b2a4a] border-b border-amber-200 pb-2 mb-3 flex justify-between items-center px-1">
+            <span class="font-bold text-sm text-[#1b2a4a]">Câu 3</span>
+            <span class="text-[11px] text-amber-800 font-bold bg-amber-100 px-2 py-0.5 rounded border border-amber-300">Thiếu 2 ý (c, d)</span>
+          </div>
+          <div class="space-y-3 text-xs">
+            <div class="flex items-center justify-between p-1 rounded hover:bg-white/60">
+              <span class="font-mono font-bold text-slate-700 text-sm">a)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle is-filled" onclick="toggleTrueFalse(this, 'p2-c3-a')">Đ</button>
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c3-a')">S</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-1 rounded hover:bg-white/60">
+              <span class="font-mono font-bold text-slate-700 text-sm">b)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle is-filled" onclick="toggleTrueFalse(this, 'p2-c3-b')">Đ</button>
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c3-b')">S</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between bg-white/90 rounded-lg p-1.5 border border-amber-300">
+              <span class="font-mono font-bold text-amber-900 text-sm">c)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c3-c')">Đ</button>
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c3-c')">S</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between bg-white/90 rounded-lg p-1.5 border border-amber-300">
+              <span class="font-mono font-bold text-amber-900 text-sm">d)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c3-d')">Đ</button>
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c3-d')">S</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Hàng 2 - Câu 4 -->
+        <div class="border border-sky-200 rounded-xl p-3.5 bg-white shadow-sm">
+          <div class="font-bold text-[#1b2a4a] border-b border-sky-100 pb-2 mb-3 flex justify-between items-center px-1">
+            <span class="font-bold text-sm text-[#1b2a4a]">Câu 4</span>
+            <span class="text-xs text-sky-800 font-mono font-semibold bg-sky-50 px-2 py-0.5 rounded border border-sky-200">Đúng / Sai</span>
+          </div>
+          <div class="space-y-3 text-xs">
+            <div class="flex items-center justify-between p-1 rounded hover:bg-slate-50">
+              <span class="font-mono font-bold text-slate-700 text-sm">a)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c4-a')">Đ</button>
+                <button class="bubble-input bubble-circle is-filled" onclick="toggleTrueFalse(this, 'p2-c4-a')">S</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-1 rounded hover:bg-slate-50">
+              <span class="font-mono font-bold text-slate-700 text-sm">b)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle is-filled" onclick="toggleTrueFalse(this, 'p2-c4-b')">Đ</button>
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c4-b')">S</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-1 rounded hover:bg-slate-50">
+              <span class="font-mono font-bold text-slate-700 text-sm">c)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c4-c')">Đ</button>
+                <button class="bubble-input bubble-circle is-filled" onclick="toggleTrueFalse(this, 'p2-c4-c')">S</button>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-1 rounded hover:bg-slate-50">
+              <span class="font-mono font-bold text-slate-700 text-sm">d)</span>
+              <div class="space-x-3 flex items-center">
+                <button class="bubble-input bubble-circle is-filled" onclick="toggleTrueFalse(this, 'p2-c4-d')">Đ</button>
+                <button class="bubble-input bubble-circle" onclick="toggleTrueFalse(this, 'p2-c4-d')">S</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></section>
+
+    <!-- ========================================== -->
+    <!-- PHẦN III: CÂU TRẢ LỜI NGẮN (LƯỚI CHUẨN XANH) -->
+    <!-- ========================================== -->
+    <section id="section-part-3" class="mb-6 scroll-mt-14"><div class="flex items-center justify-between border-b-2 border-[#1b2a4a] pb-1.5 mb-3">
+  <h3 class="font-black text-sm uppercase text-[#1b2a4a] flex items-center gap-2 font-heading">
+    <span class="w-3 h-3 bg-[#1b2a4a] rounded-sm inline-block"></span>
+    PHẦN III (6 CÂU TRẢ LỜI NGẮN - MẪU CHUẨN BGD&amp;ĐT)
+  </h3>
+  <span class="text-[11px] font-semibold text-slate-600 bg-sky-100/60 px-2 py-0.5 rounded-full border border-sky-200">
+    Đã điền: <b class="text-sky-800" id="part3-count">4</b>/6 câu
+  </span>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <!-- Hàng 1: Câu 1 (Giá trị 27) -->
+  <div class="border border-sky-200 rounded-xl p-3 bg-white shadow-sm flex flex-col items-center">
+    <div class="w-full flex items-center justify-between border-b border-sky-100 pb-2 mb-2 px-1">
+      <span class="font-bold text-[#1b2a4a] text-sm">Câu 1</span>
+      <div class="flex items-center space-x-1.5">
+        <span class="text-[11px] text-slate-500 font-medium">Giá trị:</span>
+        <div class="flex space-x-1">
+          <span class="w-6 h-6 border-2 border-slate-300 rounded font-mono font-bold text-xs flex items-center justify-center bg-slate-50 text-slate-400">&nbsp;</span>
+          <span class="w-6 h-6 border-2 border-slate-300 rounded font-mono font-bold text-xs flex items-center justify-center bg-slate-50 text-slate-400">&nbsp;</span>
+          <span class="w-6 h-6 border-2 border-sky-400 rounded font-mono font-bold text-xs flex items-center justify-center bg-sky-50 text-[#1b2a4a]">2</span>
+          <span class="w-6 h-6 border-2 border-sky-400 rounded font-mono font-bold text-xs flex items-center justify-center bg-sky-50 text-[#1b2a4a]">7</span>
+        </div>
+      </div>
+    </div>
+    <div class="w-full grid grid-cols-4 gap-1 p-2 bg-slate-50/70 rounded-lg border border-sky-100 text-center">
+      <!-- Hàng Dấu Trừ: Chỉ có ở cột 1 -->
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">-</button>
+      </div>
+      <div class="py-0.5"></div>
+      <div class="py-0.5"></div>
+      <div class="py-0.5"></div>
+
+      <!-- Hàng Dấu Phẩy: Có ở cột 2, 3, 4 -->
+      <div class="py-0.5"></div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+
+      <!-- Hàng 0 đến 9 -->
+      <!-- 0 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <!-- 1 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <!-- 2 (Cột 3 đã tô) -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm is-filled">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <!-- 3 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <!-- 4 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <!-- 5 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <!-- 6 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <!-- 7 (Cột 4 đã tô) -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm is-filled">7</button></div>
+      <!-- 8 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <!-- 9 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+    </div>
+  </div>
+
+  <!-- Hàng 1: Câu 2 (Giá trị 68) -->
+  <div class="border border-sky-200 rounded-xl p-3 bg-white shadow-sm flex flex-col items-center">
+    <div class="w-full flex items-center justify-between border-b border-sky-100 pb-2 mb-2 px-1">
+      <span class="font-bold text-[#1b2a4a] text-sm">Câu 2</span>
+      <div class="flex items-center space-x-1.5">
+        <span class="text-[11px] text-slate-500 font-medium">Giá trị:</span>
+        <div class="flex space-x-1">
+          <span class="w-6 h-6 border-2 border-slate-300 rounded font-mono font-bold text-xs flex items-center justify-center bg-slate-50 text-slate-400">&nbsp;</span>
+          <span class="w-6 h-6 border-2 border-slate-300 rounded font-mono font-bold text-xs flex items-center justify-center bg-slate-50 text-slate-400">&nbsp;</span>
+          <span class="w-6 h-6 border-2 border-sky-400 rounded font-mono font-bold text-xs flex items-center justify-center bg-sky-50 text-[#1b2a4a]">6</span>
+          <span class="w-6 h-6 border-2 border-sky-400 rounded font-mono font-bold text-xs flex items-center justify-center bg-sky-50 text-[#1b2a4a]">8</span>
+        </div>
+      </div>
+    </div>
+    <div class="w-full grid grid-cols-4 gap-1 p-2 bg-slate-50/70 rounded-lg border border-sky-100 text-center">
+      <!-- Hàng Dấu Trừ -->
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">-</button>
+      </div>
+      <div class="py-0.5"></div>
+      <div class="py-0.5"></div>
+      <div class="py-0.5"></div>
+
+      <!-- Hàng Dấu Phẩy -->
+      <div class="py-0.5"></div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+
+      <!-- Hàng 0 đến 9 -->
+      <!-- 0 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <!-- 1 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <!-- 2 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <!-- 3 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <!-- 4 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <!-- 5 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <!-- 6 (Cột 3 đã tô) -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm is-filled">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <!-- 7 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <!-- 8 (Cột 4 đã tô) -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm is-filled">8</button></div>
+      <!-- 9 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+    </div>
+  </div>
+
+  <!-- Hàng 2: Câu 3 (Giá trị 2) -->
+  <div class="border border-sky-200 rounded-xl p-3 bg-white shadow-sm flex flex-col items-center">
+    <div class="w-full flex items-center justify-between border-b border-sky-100 pb-2 mb-2 px-1">
+      <span class="font-bold text-[#1b2a4a] text-sm">Câu 3</span>
+      <div class="flex items-center space-x-1.5">
+        <span class="text-[11px] text-slate-500 font-medium">Giá trị:</span>
+        <div class="flex space-x-1">
+          <span class="w-6 h-6 border-2 border-slate-300 rounded font-mono font-bold text-xs flex items-center justify-center bg-slate-50 text-slate-400">&nbsp;</span>
+          <span class="w-6 h-6 border-2 border-slate-300 rounded font-mono font-bold text-xs flex items-center justify-center bg-slate-50 text-slate-400">&nbsp;</span>
+          <span class="w-6 h-6 border-2 border-slate-300 rounded font-mono font-bold text-xs flex items-center justify-center bg-slate-50 text-slate-400">&nbsp;</span>
+          <span class="w-6 h-6 border-2 border-sky-400 rounded font-mono font-bold text-xs flex items-center justify-center bg-sky-50 text-[#1b2a4a]">2</span>
+        </div>
+      </div>
+    </div>
+    <div class="w-full grid grid-cols-4 gap-1 p-2 bg-slate-50/70 rounded-lg border border-sky-100 text-center">
+      <!-- Hàng Dấu Trừ -->
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">-</button>
+      </div>
+      <div class="py-0.5"></div>
+      <div class="py-0.5"></div>
+      <div class="py-0.5"></div>
+
+      <!-- Hàng Dấu Phẩy -->
+      <div class="py-0.5"></div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+
+      <!-- Hàng 0 đến 9 -->
+      <!-- 0 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <!-- 1 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <!-- 2 (Cột 4 đã tô) -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm is-filled">2</button></div>
+      <!-- 3 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <!-- 4 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <!-- 5 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <!-- 6 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <!-- 7 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <!-- 8 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <!-- 9 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+    </div>
+  </div>
+
+  <!-- Hàng 2: Câu 4 (Giá trị -1,5) -->
+  <div class="border border-sky-200 rounded-xl p-3 bg-white shadow-sm flex flex-col items-center">
+    <div class="w-full flex items-center justify-between border-b border-sky-100 pb-2 mb-2 px-1">
+      <span class="font-bold text-[#1b2a4a] text-sm">Câu 4</span>
+      <div class="flex items-center space-x-1.5">
+        <span class="text-[11px] text-slate-500 font-medium">Giá trị:</span>
+        <div class="flex space-x-1">
+          <span class="w-6 h-6 border-2 border-sky-400 rounded font-mono font-bold text-xs flex items-center justify-center bg-sky-50 text-[#1b2a4a]">-</span>
+          <span class="w-6 h-6 border-2 border-sky-400 rounded font-mono font-bold text-xs flex items-center justify-center bg-sky-50 text-[#1b2a4a]">1</span>
+          <span class="w-6 h-6 border-2 border-sky-400 rounded font-mono font-bold text-xs flex items-center justify-center bg-sky-50 text-[#1b2a4a]">,</span>
+          <span class="w-6 h-6 border-2 border-sky-400 rounded font-mono font-bold text-xs flex items-center justify-center bg-sky-50 text-[#1b2a4a]">5</span>
+        </div>
+      </div>
+    </div>
+    <div class="w-full grid grid-cols-4 gap-1 p-2 bg-slate-50/70 rounded-lg border border-sky-100 text-center">
+      <!-- Hàng Dấu Trừ: Cột 1 đã tô -->
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold is-filled">-</button>
+      </div>
+      <div class="py-0.5"></div>
+      <div class="py-0.5"></div>
+      <div class="py-0.5"></div>
+
+      <!-- Hàng Dấu Phẩy: Cột 3 đã tô -->
+      <div class="py-0.5"></div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold is-filled">,</button>
+      </div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+
+      <!-- Hàng 0 đến 9 -->
+      <!-- 0 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <!-- 1 (Cột 2 đã tô) -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm is-filled">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <!-- 2 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <!-- 3 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <!-- 4 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <!-- 5 (Cột 4 đã tô) -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm is-filled">5</button></div>
+      <!-- 6 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <!-- 7 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <!-- 8 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <!-- 9 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+    </div>
+  </div>
+
+  <!-- Hàng 3: Câu 5 (Chưa điền - Cảnh báo Amber) -->
+  <div class="border-2 border-amber-300 rounded-xl p-3 bg-amber-50/60 shadow-sm flex flex-col items-center">
+    <div class="w-full flex items-center justify-between border-b border-amber-200 pb-2 mb-2 px-1">
+      <div class="flex items-center gap-1 font-bold text-amber-900 text-sm">
+        <span class="">Câu 5</span>
+        <span class="text-xs text-amber-600 font-normal">*(chưa điền)</span>
+      </div>
+      <div class="flex items-center space-x-1.5">
+        <span class="text-[11px] text-amber-800 font-medium">Giá trị:</span>
+        <div class="flex space-x-1">
+          <span class="w-6 h-6 border-2 border-dashed border-amber-400 rounded font-mono text-xs flex items-center justify-center text-amber-700 bg-white font-bold">?</span>
+          <span class="w-6 h-6 border-2 border-dashed border-amber-400 rounded font-mono text-xs flex items-center justify-center text-amber-700 bg-white font-bold">?</span>
+          <span class="w-6 h-6 border-2 border-dashed border-amber-400 rounded font-mono text-xs flex items-center justify-center text-amber-700 bg-white font-bold">?</span>
+          <span class="w-6 h-6 border-2 border-dashed border-amber-400 rounded font-mono text-xs flex items-center justify-center text-amber-700 bg-white font-bold">?</span>
+        </div>
+      </div>
+    </div>
+    <div class="w-full grid grid-cols-4 gap-1 p-2 bg-white/70 rounded-lg border border-amber-200 opacity-90 text-center">
+      <!-- Hàng Dấu Trừ -->
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">-</button>
+      </div>
+      <div class="py-0.5"></div>
+      <div class="py-0.5"></div>
+      <div class="py-0.5"></div>
+
+      <!-- Hàng Dấu Phẩy -->
+      <div class="py-0.5"></div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+
+      <!-- Hàng 0 đến 9 -->
+      <!-- 0 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <!-- 1 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <!-- 2 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <!-- 3 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <!-- 4 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <!-- 5 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <!-- 6 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <!-- 7 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <!-- 8 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <!-- 9 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+    </div>
+  </div>
+
+  <!-- Hàng 3: Câu 6 (Chưa điền - Cảnh báo Amber) -->
+  <div class="border-2 border-amber-300 rounded-xl p-3 bg-amber-50/60 shadow-sm flex flex-col items-center">
+    <div class="w-full flex items-center justify-between border-b border-amber-200 pb-2 mb-2 px-1">
+      <div class="flex items-center gap-1 font-bold text-amber-900 text-sm">
+        <span class="">Câu 6</span>
+        <span class="text-xs text-amber-600 font-normal">*(chưa điền)</span>
+      </div>
+      <div class="flex items-center space-x-1.5">
+        <span class="text-[11px] text-amber-800 font-medium">Giá trị:</span>
+        <div class="flex space-x-1">
+          <span class="w-6 h-6 border-2 border-dashed border-amber-400 rounded font-mono text-xs flex items-center justify-center text-amber-700 bg-white font-bold">?</span>
+          <span class="w-6 h-6 border-2 border-dashed border-amber-400 rounded font-mono text-xs flex items-center justify-center text-amber-700 bg-white font-bold">?</span>
+          <span class="w-6 h-6 border-2 border-dashed border-amber-400 rounded font-mono text-xs flex items-center justify-center text-amber-700 bg-white font-bold">?</span>
+          <span class="w-6 h-6 border-2 border-dashed border-amber-400 rounded font-mono text-xs flex items-center justify-center text-amber-700 bg-white font-bold">?</span>
+        </div>
+      </div>
+    </div>
+    <div class="w-full grid grid-cols-4 gap-1 p-2 bg-white/70 rounded-lg border border-amber-200 opacity-90 text-center">
+      <!-- Hàng Dấu Trừ -->
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">-</button>
+      </div>
+      <div class="py-0.5"></div>
+      <div class="py-0.5"></div>
+      <div class="py-0.5"></div>
+
+      <!-- Hàng Dấu Phẩy -->
+      <div class="py-0.5"></div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+      <div class="flex justify-center items-center py-0.5">
+        <button class="bubble-input bubble-circle-sm text-[11px] font-bold">,</button>
+      </div>
+
+      <!-- Hàng 0 đến 9 -->
+      <!-- 0 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">0</button></div>
+      <!-- 1 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">1</button></div>
+      <!-- 2 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">2</button></div>
+      <!-- 3 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">3</button></div>
+      <!-- 4 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">4</button></div>
+      <!-- 5 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">5</button></div>
+      <!-- 6 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">6</button></div>
+      <!-- 7 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">7</button></div>
+      <!-- 8 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">8</button></div>
+      <!-- 9 -->
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+      <div class="flex justify-center py-0.5"><button class="bubble-input bubble-circle-sm">9</button></div>
+    </div>
+  </div>
+</div></section>
+
+    <!-- ========================================== -->
+    <!-- CỤM HÀNH ĐỘNG CUỐI PHIẾU & TRẠNG THÁI SAO LƯU -->
+    <!-- ========================================== -->
+    <footer class="pt-5 border-t-2 border-slate-200 mt-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- Trạng thái tự động lưu -->
+        <div class="flex items-center space-x-2 text-xs text-slate-500">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="">Hệ thống tự động sao lưu vào Cloud <b>12 giây trước</b></span>
+        </div>
+        <!-- Nút chức năng phụ -->
+        <div class="flex items-center space-x-2">
+          <button class="px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-medium transition" onclick="alert('Đã mở bản nháp toán học')">
+            📝 Giấy nháp
+          </button>
+          <button class="px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-medium transition" onclick="confirmResetSheet()">
+            Tẩy toàn bộ
+          </button>
+        </div>
+      </div>
+      <!-- Nút Nộp Bài Thi Chính Thức -->
+      <div class="mt-4 pt-4 border-t border-slate-100 flex flex-col items-center">
+        <button class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#1b2a4a] via-sky-900 to-[#1b2a4a] hover:from-sky-900 hover:to-[#1b2a4a] text-white font-heading font-bold text-base shadow-xl hover:shadow-2xl transition transform active:scale-[0.99] flex items-center justify-center space-x-2.5 border border-sky-400/30" onclick="openSubmitModal()">
+          <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          <span class="">NỘP BÀI THI CHÍNH THỨC</span>
+        </button>
+        <p class="text-[11px] text-slate-400 mt-2 text-center">
+          Sau khi nộp bài, hệ thống BQD Math sẽ tự động chấm điểm OMR và công bố lời giải chi tiết.
+        </p>
+      </div>
+    </footer>
+  </div>
+</div></section>
+<!-- END: RightAnswerSheet -->
+</main>
+<!-- END: MainContentSplitArea -->
+<!-- BEGIN: WarningSubmissionModal (Modal cảnh báo khi nộp bài chưa điền đủ) -->
+<div class="fixed inset-0 bg-slate-900/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" id="submit-warning-modal">
+<div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden border border-slate-200 animate-in fade-in zoom-in-95 duration-200">
+<!-- Header modal -->
+<div class="bg-amber-500 p-4 text-white flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-none">
+<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div>
+<h4 class="font-heading font-bold text-lg">Cảnh Báo Chưa Hoàn Thành Bài Thi!</h4>
+<p class="text-xs text-amber-100">Vẫn còn thời gian làm bài, hãy kiểm tra kỹ trước khi nộp.</p>
+</div>
+</div>
+<!-- Nội dung chi tiết các câu còn thiếu -->
+<div class="p-5 space-y-4">
+<div class="p-3.5 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-950 leading-relaxed">
+<p class="font-semibold mb-1 flex items-center gap-1 text-amber-900">
+<span class="">⚠️</span> Bạn vẫn chưa chọn đáp án cho các câu hỏi sau:
+          </p>
+<ul class="list-disc list-inside space-y-1 font-medium pl-1 text-slate-800">
+<li class=""><strong>Phần I:</strong> Câu 9, Câu 11 <span class="text-amber-700 italic">(2 câu)</span></li>
+<li class=""><strong>Phần II:</strong> Câu 3 ý c), ý d) <span class="text-amber-700 italic">(2 lệnh hỏi)</span></li>
+<li class=""><strong>Phần III:</strong> Câu 5, Câu 6 <span class="text-amber-700 italic">(2 câu ngắn)</span></li>
+</ul>
+</div>
+<div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg text-xs text-slate-700">
+<span class="">Thời gian còn lại:</span>
+<span class="font-mono font-bold text-red-600 text-sm">78 phút 42 giây</span>
+</div>
+<p class="text-xs text-slate-500 italic text-center">
+          Nếu nộp ngay bây giờ, các câu chưa trả lời sẽ được tính là 0 điểm. Bạn có chắc chắn muốn nộp không?
+        </p>
+</div>
+<!-- Footer Modal: 2 Nút hành động -->
+<div class="p-4 bg-slate-100 border-t border-slate-200 flex flex-col-reverse sm:flex-row items-center justify-end gap-2.5">
+<button class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#1b2a4a] hover:bg-sky-900 text-white font-semibold text-xs transition shadow-sm" onclick="closeSubmitModal()">
+          ← Quay lại làm tiếp
+        </button>
+<button class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-semibold text-xs transition shadow-sm" onclick="confirmFinalSubmit()">
+          Vẫn xác nhận nộp bài
+        </button>
+</div>
+</div>
+</div>
+<!-- END: WarningSubmissionModal -->
+<!-- BEGIN: InteractiveScripts -->
+<script data-purpose="splitter-and-zoom">
+    // 1. Kéo co giãn Split-view 2 cột
+    const splitContainer = document.getElementById('split-container');
+    const leftPane = document.getElementById('left-pane');
+    const rightPane = document.getElementById('right-pane');
+    const splitter = document.getElementById('drag-splitter');
+    let isDragging = false;
+
+    splitter.addEventListener('mousedown', function (e) {
+      isDragging = true;
+      document.body.style.cursor = 'col-resize';
+    });
+
+    document.addEventListener('mousemove', function (e) {
+      if (!isDragging) return;
+      const containerRect = splitContainer.getBoundingClientRect();
+      const newLeftWidth = ((e.clientX - containerRect.left) / containerRect.width) * 100;
+      if (newLeftWidth > 20 && newLeftWidth < 80) {
+        leftPane.style.width = newLeftWidth + '%';
+        rightPane.style.width = (100 - newLeftWidth) + '%';
+      }
+    });
+
+    document.addEventListener('mouseup', function () {
+      if (isDragging) {
+        isDragging = false;
+        document.body.style.cursor = 'default';
+      }
+    });
+
+    // Chuyển nhanh tỉ lệ 50:50, 65:35, 35:65
+    function setSplitLayout(leftPercent) {
+      leftPane.style.width = leftPercent + '%';
+      rightPane.style.width = (100 - leftPercent) + '%';
+    }
+
+    // 2. Phóng to thu nhỏ PDF đề thi
+    let currentZoom = 100;
+    const paper = document.getElementById('pdf-paper');
+    const zoomText = document.getElementById('zoom-indicator');
+
+    function adjustZoom(delta) {
+      currentZoom = Math.min(Math.max(currentZoom + delta, 60), 160);
+      paper.style.transform = `scale(${currentZoom / 100})`;
+      zoomText.innerText = currentZoom + '%';
+    }
+
+    function resetZoom() {
+      currentZoom = 100;
+      paper.style.transform = 'scale(1)';
+      zoomText.innerText = '100%';
+    }
+  </script>
+<script data-purpose="omr-bubbles-logic">
+    // Logic tô chì OMR độc quyền cho Phần I
+    function toggleBubble(btn, groupName) {
+      const parentRow = btn.closest('.grid');
+      const siblings = parentRow.querySelectorAll('.bubble-input');
+      const alreadyFilled = btn.classList.contains('is-filled');
+
+      siblings.forEach(b => b.classList.remove('is-filled'));
+      if (!alreadyFilled) {
+        btn.classList.add('is-filled');
+      }
+      updateStats();
+    }
+
+    // Logic Đúng / Sai cho Phần II
+    function toggleTrueFalse(btn, groupName) {
+      const parentDiv = btn.parentElement;
+      const siblings = parentDiv.querySelectorAll('.bubble-input');
+      const alreadyFilled = btn.classList.contains('is-filled');
+
+      siblings.forEach(b => b.classList.remove('is-filled'));
+      if (!alreadyFilled) {
+        btn.classList.add('is-filled');
+      }
+      updateStats();
+    }
+
+    function updateStats() {
+      // Cập nhật thống kê làm bài nhanh
+      const filledPart1 = document.querySelectorAll('#right-pane section:nth-of-type(1) .bubble-input.is-filled').length;
+      document.getElementById('part1-count').innerText = filledPart1;
+    }
+
+    function confirmResetSheet() {
+      if (confirm('Bạn có chắc chắn muốn tẩy sạch toàn bộ phiếu trả lời để làm lại từ đầu không?')) {
+        document.querySelectorAll('.bubble-input').forEach(b => b.classList.remove('is-filled'));
+        alert('Đã tẩy trắng phiếu trả lời!');
+      }
+    }
+  </script>
+<script data-purpose="modal-and-timer">
+    // Đồng hồ đếm ngược 78:42
+    let remainingSeconds = 78 * 60 + 42;
+    const timerElem = document.getElementById('exam-timer');
+
+    setInterval(() => {
+      if (remainingSeconds > 0) {
+        remainingSeconds--;
+        const m = Math.floor(remainingSeconds / 60).toString().padStart(2, '0');
+        const s = (remainingSeconds % 60).toString().padStart(2, '0');
+        timerElem.innerText = `${m}:${s}`;
+      }
+    }, 1000);
+
+    // Modal Cảnh Báo Khi Bấm Nộp Bài
+    const modal = document.getElementById('submit-warning-modal');
+
+    function openSubmitModal() {
+      modal.classList.remove('hidden');
+    }
+
+    function closeSubmitModal() {
+      modal.classList.add('hidden');
+    }
+
+    function confirmFinalSubmit() {
+      modal.classList.add('hidden');
+      alert('Hệ thống đã nhận bài thi của thí sinh: NGUYỄN HOÀNG NAM.\nĐiểm số và lời giải chi tiết sẽ hiển thị ngay!');
+    }
+  </script>
+<!-- END: InteractiveScripts -->
+
+
+
+
+
+
+
+
+</body></html>

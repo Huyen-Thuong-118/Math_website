@@ -1,7 +1,8 @@
 ﻿import type { Metadata } from "next";
-import { Comfortaa, Noto_Serif_Display } from "next/font/google";
+import { Be_Vietnam_Pro, Comfortaa, Noto_Serif_Display } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { THEME_INIT_SCRIPT } from "@/components/theme/theme-script";
 import "katex/dist/katex.min.css";
 import "./globals.css";
 
@@ -9,6 +10,14 @@ const comfortaa = Comfortaa({
   variable: "--font-comfortaa",
   subsets: ["latin", "vietnamese"],
   weight: ["300", "400", "500", "600", "700"],
+});
+
+// Font thân bài theo FE/DESIGN.md — chỉ áp trong vùng `.ds` (xem globals.css),
+// các trang khác (Trang chủ) vẫn dùng Comfortaa.
+const beVietnamPro = Be_Vietnam_Pro({
+  variable: "--font-be-vietnam-pro",
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700"],
 });
 
 // Chỉ dùng cho câu quote ở Hero (xem --font-slogan trong globals.css).
@@ -33,8 +42,11 @@ export default function RootLayout({
       lang="vi"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${comfortaa.variable} ${notoSerifDisplay.variable} h-full antialiased`}
+      className={`${comfortaa.variable} ${beVietnamPro.variable} ${notoSerifDisplay.variable} h-full antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body className="min-h-full flex flex-col bg-pastel-100 text-navy-500 font-sans">
         <ThemeProvider><SessionProvider>{children}</SessionProvider></ThemeProvider>
       </body>

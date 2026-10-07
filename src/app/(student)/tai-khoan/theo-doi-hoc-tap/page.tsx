@@ -21,7 +21,7 @@ function pageHref(filters: ProgressFilters, page: number) {
   query.set("range", filters.range);
   query.set("activity", filters.activity);
   query.set("page", String(page));
-  return "/theo-doi-hoc-tap?" + query.toString();
+  return "/tai-khoan/theo-doi-hoc-tap?" + query.toString();
 }
 
 export default async function MyProgressPage({

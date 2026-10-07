@@ -55,7 +55,7 @@ export function GoogleAuthButton({
         type="button"
         onClick={handleClick}
         disabled={isLoading || !enabled}
-        className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-navy-200/60 bg-white px-6 py-3 text-sm font-medium text-navy-500 transition-colors hover:bg-pastel-50 disabled:pointer-events-none disabled:opacity-70"
+        className="inline-flex w-full items-center justify-center gap-3 min-h-12 rounded-full border border-navy-200/60 bg-white px-6 py-3 text-sm font-medium text-navy-500 transition-colors hover:bg-pastel-50 disabled:pointer-events-none disabled:opacity-70"
       >
         {isLoading ? (
           <Loader2 className="size-5 animate-spin" aria-hidden />
