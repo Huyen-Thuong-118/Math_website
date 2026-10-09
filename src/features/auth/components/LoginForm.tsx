@@ -11,10 +11,10 @@ import { validateLoginIdentifier, validateLoginPassword } from "../lib/validatio
 import { GoogleAuthButton } from "./GoogleAuthButton";
 
 const inputClass =
-  "w-full rounded-2xl border border-navy-100 bg-pastel-50/60 px-4 py-3 text-sm text-navy-500 placeholder:text-navy-300/70 outline-none transition-colors focus:border-navy-400 focus:bg-white";
+  "w-full min-h-12 rounded-full border border-navy-200/60 bg-white px-5 py-3 text-sm text-navy-500 placeholder:text-navy-300/70 outline-none transition-colors focus:border-[#3b82f6]";
 const errorInputClass = "border-accent-500/70 focus:border-accent-500";
 const primaryButtonClass =
-  "inline-flex w-full items-center justify-center gap-2 rounded-full bg-linear-to-r from-navy-500 to-navy-700 px-6 py-3 text-sm font-semibold text-pastel-50 shadow-[0_8px_24px_rgba(27,42,74,0.28)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(27,42,74,0.35)] disabled:pointer-events-none disabled:opacity-70";
+  "inline-flex w-full min-h-12 items-center justify-center gap-2 rounded-full bg-navy-500 px-6 py-3 text-sm font-semibold text-pastel-50 shadow-[0_12px_32px_-8px_rgba(27,42,74,0.35)] transition-all hover:-translate-y-px hover:bg-navy-600 disabled:pointer-events-none disabled:opacity-70";
 
 type FormErrors = Partial<Record<"identifier" | "password", string>>;
 
@@ -68,7 +68,7 @@ export function LoginForm({ googleEnabled, passwordChanged = false }: { googleEn
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-semibold text-navy-500">Đăng nhập</h1>
+        <h1 className="text-3xl font-bold text-navy-500">Đăng nhập</h1>
         <p className="text-sm text-navy-300">
           Chào mừng bạn quay trở lại BQD Math
         </p>
@@ -82,7 +82,7 @@ export function LoginForm({ googleEnabled, passwordChanged = false }: { googleEn
         )}
         <div className="flex flex-col gap-1.5">
           <label htmlFor="identifier" className="text-sm font-medium text-navy-500">
-            Tài khoản, số điện thoại hoặc email
+            Số điện thoại hoặc Email
           </label>
           <input
             id="identifier"
@@ -181,7 +181,7 @@ export function LoginForm({ googleEnabled, passwordChanged = false }: { googleEn
         <span className="h-px flex-1 bg-navy-100" />
       </div>
 
-      <GoogleAuthButton label="Đăng nhập bằng Google" enabled={googleEnabled} />
+      <GoogleAuthButton label="Tiếp tục với Google" enabled={googleEnabled} />
 
       <p className="text-center text-sm text-navy-400">
         Chưa có tài khoản?{" "}

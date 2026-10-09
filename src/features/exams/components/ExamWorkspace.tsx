@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { CheckCircle2, Loader2, Send } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Loader2, Send } from "lucide-react";
 
 import { submitExam } from "../actions";
 import { useAnswerBuffer, type SaveStatus } from "../hooks/useAnswerBuffer";
@@ -25,6 +25,7 @@ export function ExamWorkspace({ attempt }: { attempt: TakingAttempt }) {
   const [marked, setMarked] = useState<Set<number>>(new Set());
   const [mobilePane, setMobilePane] = useState<"answers" | "pdf">("answers");
   const submittingRef = useRef(false);
+  const [tabSwitches, setTabSwitches] = useState(0);
   const { answers, selectAnswer, flushNow, saveStatus } = useAnswerBuffer(
     attempt.id,
     attempt.initialAnswers,
@@ -34,10 +35,19 @@ export function ExamWorkspace({ attempt }: { attempt: TakingAttempt }) {
     isCompleteAnswer(question, answers[question.number]),
   ).length;
 
-  const handleSubmit = useCallback(async () => {
+  // Chống gian lận (UI): đếm số lần rời tab. Chỉ cảnh báo, không tự nộp bài.
+  useEffect(() => {
+    function onVisibility() {
+      if (document.visibilityState === "hidden") setTabSwitches((count) => count + 1);
+    }
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
+
+  const handleSubmit = useCallback(async (automatic = false) => {
     if (submittingRef.current) return;
     const unanswered = attempt.questions.length - answeredCount;
-    if (unanswered > 0 && !window.confirm(`Bạn còn ${unanswered} câu chưa trả lời. Vẫn nộp bài?`)) return;
+    if (!automatic && unanswered > 0 && !window.confirm(`Bạn còn ${unanswered} câu chưa trả lời. Vẫn nộp bài?`)) return;
     submittingRef.current = true;
     setIsSubmitting(true);
     setError(undefined);
@@ -63,36 +73,53 @@ export function ExamWorkspace({ attempt }: { attempt: TakingAttempt }) {
 
   return (
     <div className="space-y-6">
-      <header className="sticky top-2 z-20 rounded-3xl border border-navy-100 bg-white/95 p-4 shadow-sm backdrop-blur sm:p-5">
+      <header className="sticky top-2 z-20 rounded-3xl bg-navy-600 p-4 text-white shadow-[0_20px_40px_-12px_rgba(27,42,74,0.35)] sm:p-5">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold tracking-wide text-navy-300 uppercase">
+          <div className="min-w-0">
+            <p className="text-xs font-semibold tracking-wide text-pastel-300 uppercase">
               {attempt.mode === "MOCK" ? "Thi thử" : "Luyện tập"}
             </p>
-            <h1 className="mt-1 text-xl font-semibold text-navy-600">
+            <h1 className="mt-1 truncate text-lg font-semibold text-white sm:text-xl">
               {attempt.examTitle}
             </h1>
           </div>
-          <div className="flex items-center gap-5 text-sm">
-            <span className={saveStatus === "error" ? "text-red-600" : "text-navy-400"}>
+          <div className="flex flex-wrap items-center gap-3 text-sm">
+            <span className={saveStatus === "error" ? "text-red-300" : "text-pastel-200"}>
               {saveStatus === "saved" && <CheckCircle2 className="mr-1 inline size-4" />}
               {SAVE_LABEL[saveStatus]}
             </span>
-            <ExamTimer expiresAt={attempt.expiresAt} onExpire={handleSubmit} />
+            {attempt.mode === "MOCK" && (
+              <span className="rounded-2xl bg-white px-4 py-2">
+                <ExamTimer expiresAt={attempt.expiresAt} onExpire={() => void handleSubmit(true)} />
+              </span>
+            )}
+            <button
+              type="button"
+              disabled={isSubmitting}
+              onClick={() => void handleSubmit()}
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-emerald-500 px-5 text-sm font-bold text-white transition-colors hover:bg-emerald-600 disabled:opacity-70"
+            >
+              {isSubmitting ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <Send className="size-4" aria-hidden />}
+              Nộp bài
+            </button>
           </div>
         </div>
         <div className="mt-4 flex items-center gap-3">
-          <div className="h-2 flex-1 overflow-hidden rounded-full bg-navy-50">
-            <div
-              className="h-full rounded-full bg-pastel-600 transition-[width]"
-              style={{ width: `${(answeredCount / attempt.questions.length) * 100}%` }}
-            />
+          <span className="text-xs text-pastel-200">Tiến độ</span>
+          <div className="ds-ribbon flex-1" role="progressbar" aria-valuemin={0} aria-valuemax={attempt.questions.length} aria-valuenow={answeredCount} aria-label="Tiến độ làm bài">
+            <span style={{ width: `${attempt.questions.length ? (answeredCount / attempt.questions.length) * 100 : 0}%` }} />
           </div>
-          <span className="text-xs font-semibold text-navy-400">
+          <span className="text-xs font-semibold text-white">
             {answeredCount}/{attempt.questions.length} câu
           </span>
         </div>
       </header>
+      {tabSwitches > 3 && (
+        <p role="alert" className="flex items-center gap-2 rounded-2xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">
+          <AlertTriangle className="size-4 shrink-0" aria-hidden />
+          Bạn đã rời khỏi tab thi {tabSwitches} lần. Vui lòng giữ tập trung và không chuyển tab khi đang làm bài.
+        </p>
+      )}
 
       {attempt.hasExamFile && (
         <div className="sticky top-[8.5rem] z-10 grid grid-cols-2 rounded-2xl border border-navy-100 bg-white p-1 shadow-sm xl:hidden" role="tablist" aria-label="Nội dung bài thi">
@@ -113,11 +140,12 @@ export function ExamWorkspace({ attempt }: { attempt: TakingAttempt }) {
         <div>
           <p className="font-semibold">Đã trả lời {answeredCount}/{attempt.questions.length} câu</p>
           <p className="text-xs text-pastel-200">Có thể nộp khi chưa trả lời hết.</p>
+          <div className="ds-ribbon mt-2 w-48 max-w-full" role="progressbar" aria-valuemin={0} aria-valuemax={attempt.questions.length} aria-valuenow={answeredCount} aria-label="Tiến độ làm bài"><span style={{ width: `${attempt.questions.length ? (answeredCount / attempt.questions.length) * 100 : 0}%` }} /></div>
         </div>
         <button
           type="button"
           disabled={isSubmitting}
-          onClick={handleSubmit}
+          onClick={() => void handleSubmit()}
           className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-navy-600 disabled:opacity-70"
         >
           {isSubmitting ? (

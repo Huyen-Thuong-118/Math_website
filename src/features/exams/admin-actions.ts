@@ -16,6 +16,7 @@ import {
   uploadDocument,
 } from "@/lib/storage";
 import { requireActiveAdminId } from "./admin";
+import { parseVietnamDateTime } from "./availability";
 import { analyzeExamPdfsWithGemini, hasGeminiConfig } from "./gemini";
 
 const MAX_PDF_BYTES = 20 * 1024 * 1024;
@@ -117,7 +118,7 @@ function parseManualQuestions(raw: string): ManualQuestion[] | null {
         : [];
       const correctAnswer = typeof row.correctAnswer === "string" ? row.correctAnswer.trim().toUpperCase().replace(/Đ/g, "D") : "";
       if (!content || content.length > 4_000 || (explanation?.length ?? 0) > 10_000 || !Number.isFinite(points) || points <= 0 || points > 100) return null;
-      if (type === "MULTIPLE_CHOICE" && (options.length !== 4 || options.some((option) => !option || option.length > 1_000) || !/^[ABCD]$/.test(correctAnswer))) return null;
+      if (type === "MULTIPLE_CHOICE" && (options.length < 2 || options.length > 26 || options.some((option) => !option || option.length > 1_000) || !/^[A-Z]$/.test(correctAnswer) || correctAnswer.charCodeAt(0) - 65 >= options.length)) return null;
       if (type === "TRUE_FALSE" && (options.length !== 4 || options.some((option) => !option || option.length > 1_000) || !/^[DS](,[DS]){3}$/.test(correctAnswer))) return null;
       if (type === "SHORT_ANSWER" && (!correctAnswer || correctAnswer.length > 50)) return null;
       questions.push({ type, content, options: type === "SHORT_ANSWER" ? [] : options, correctAnswer, explanation, points });
@@ -403,8 +404,8 @@ export async function createExam(formData: FormData): Promise<CreateExamResult> 
     const maxAttempts = parsePositiveInteger(text(formData, "maxAttempts"), true);
     const availableFromRaw = text(formData, "availableFrom");
     const availableToRaw = text(formData, "availableTo");
-    const availableFrom = !isForever && availableFromRaw ? new Date(availableFromRaw) : null;
-    const availableTo = !isForever && availableToRaw ? new Date(availableToRaw) : null;
+    const availableFrom = !isForever && availableFromRaw ? parseVietnamDateTime(availableFromRaw) : null;
+    const availableTo = !isForever && availableToRaw ? parseVietnamDateTime(availableToRaw) : null;
     const sections = parseSections(text(formData, "sections"));
     const classIds = formData
       .getAll("classIds")
@@ -705,8 +706,8 @@ export async function updateExam(examId: string, formData: FormData): Promise<Up
     const maxAttempts = parsePositiveInteger(text(formData, "maxAttempts"), true);
     const availableFromRaw = text(formData, "availableFrom");
     const availableToRaw = text(formData, "availableTo");
-    const availableFrom = !isForever && availableFromRaw ? new Date(availableFromRaw) : null;
-    const availableTo = !isForever && availableToRaw ? new Date(availableToRaw) : null;
+    const availableFrom = !isForever && availableFromRaw ? parseVietnamDateTime(availableFromRaw) : null;
+    const availableTo = !isForever && availableToRaw ? parseVietnamDateTime(availableToRaw) : null;
     const classIds = [...new Set(formData.getAll("classIds").filter((item): item is string => typeof item === "string"))];
     const folderId = text(formData, "folderId") || null;
     const examPdf = formData.get("examPdf");

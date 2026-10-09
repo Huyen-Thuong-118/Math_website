@@ -3,16 +3,12 @@ import { Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
 import { ExamAccessError } from "./errors";
 import { gradeExam } from "./grading";
-
-function isAvailableNow(
-  exam: { isForever: boolean; availableFrom: Date | null; availableTo: Date | null },
-  now: Date,
-) {
-  if (exam.isForever) return true;
-  if (exam.availableFrom && exam.availableFrom > now) return false;
-  if (exam.availableTo && exam.availableTo < now) return false;
-  return true;
-}
+import {
+  canFinalizeExam,
+  canStartExam,
+  canWriteAnswers,
+  effectiveAttemptExpiresAt,
+} from "./availability";
 
 /** Core bắt đầu bài tách khỏi session để integration test được trực tiếp. */
 export async function startAttemptForUser(examId: string, userId: string) {
@@ -47,16 +43,16 @@ export async function startAttemptForUser(examId: string, userId: string) {
   }
 
   const now = new Date();
-  if (!isAvailableNow(exam, now)) {
-    throw new ExamAccessError("Đề chưa mở hoặc đã đóng.", 409);
-  }
   const openAttempt = exam.attempts.find((attempt) => !attempt.submittedAt);
   if (openAttempt) {
-    if (openAttempt.expiresAt && openAttempt.expiresAt <= now) {
-      await submitAttemptForUser(openAttempt.id, userId);
+    if (!canWriteAnswers(exam, openAttempt.expiresAt, now) && canFinalizeExam()) {
+      await submitAttemptForUser(openAttempt.id, userId, "AUTO_SUBMITTED");
       return { attemptId: openAttempt.id, submitted: true };
     }
     return { attemptId: openAttempt.id, submitted: false };
+  }
+  if (!canStartExam(exam, now)) {
+    throw new ExamAccessError("Đề chưa mở hoặc đã đóng.", 409);
   }
   if (exam.maxAttempts !== null && exam.attempts.length >= exam.maxAttempts) {
     throw new ExamAccessError("Bạn đã sử dụng hết số lượt làm bài.", 409);
@@ -70,9 +66,7 @@ export async function startAttemptForUser(examId: string, userId: string) {
         userId,
         openKey,
         mode: exam.mode,
-        expiresAt: exam.durationMinutes
-          ? new Date(now.getTime() + exam.durationMinutes * 60_000)
-          : null,
+        expiresAt: effectiveAttemptExpiresAt(exam, now),
       },
       select: { id: true },
     });
@@ -93,7 +87,11 @@ export async function startAttemptForUser(examId: string, userId: string) {
 }
 
 /** Nộp/chấm idempotent: nhiều request cùng attempt vẫn chỉ tạo một snapshot. */
-export async function submitAttemptForUser(attemptId: string, userId: string) {
+export async function submitAttemptForUser(
+  attemptId: string,
+  userId: string,
+  submissionReason: "SUBMITTED" | "AUTO_SUBMITTED" = "SUBMITTED",
+) {
   return db.$transaction(async (tx) => {
     await tx.$queryRaw(Prisma.sql`SELECT "id" FROM "ExamAttempt" WHERE "id" = ${attemptId} AND "userId" = ${userId} FOR UPDATE`);
     const attempt = await tx.examAttempt.findFirst({
@@ -106,7 +104,7 @@ export async function submitAttemptForUser(attemptId: string, userId: string) {
           select: {
             scoringPolicy: true,
             questions: {
-              select: { id: true, number: true, type: true, correctAnswer: true, points: true },
+              select: { id: true, number: true, type: true, options: true, correctAnswer: true, points: true },
               orderBy: { number: "asc" },
             },
           },
@@ -123,7 +121,8 @@ export async function submitAttemptForUser(attemptId: string, userId: string) {
 
     const latestAnswers = new Map<number, string>();
     for (const answer of attempt.answers) {
-      latestAnswers.set(answer.questionNumber, answer.selectedAnswer);
+      if (answer.selectedAnswer) latestAnswers.set(answer.questionNumber, answer.selectedAnswer);
+      else latestAnswers.delete(answer.questionNumber);
     }
     for (const answer of attempt.finalizedAnswers) {
       if (answer.selectedAnswer) latestAnswers.set(answer.questionNumber, answer.selectedAnswer);
@@ -132,7 +131,16 @@ export async function submitAttemptForUser(attemptId: string, userId: string) {
     const scoringPolicy = rawPolicy && typeof rawPolicy === "object" && !Array.isArray(rawPolicy)
       ? rawPolicy as { trueFalseFractions?: number[] }
       : {};
-    const grade = gradeExam(attempt.exam.questions, latestAnswers, scoringPolicy);
+    const grade = gradeExam(
+      attempt.exam.questions.map((question) => ({
+        ...question,
+        options: Array.isArray(question.options)
+          ? question.options.filter((option): option is string => typeof option === "string")
+          : [],
+      })),
+      latestAnswers,
+      scoringPolicy,
+    );
     const submittedAt = new Date();
 
     const claimed = await tx.examAttempt.updateMany({
@@ -144,6 +152,7 @@ export async function submitAttemptForUser(attemptId: string, userId: string) {
         incorrectCount: grade.incorrectCount,
         unansweredCount: grade.unansweredCount,
         openKey: null,
+        submissionReason,
       },
     });
     if (claimed.count === 0) {
@@ -159,4 +168,25 @@ export async function submitAttemptForUser(attemptId: string, userId: string) {
     }
     return { attemptId: attempt.id, score: grade.score };
   });
+}
+
+export async function finalizeExpiredAttempts(limit = 100) {
+  const attempts = await db.examAttempt.findMany({
+    where: {
+      submittedAt: null,
+      OR: [
+        { expiresAt: { lte: new Date() } },
+        { exam: { status: { not: "PUBLISHED" } } },
+      ],
+    },
+    select: { id: true, userId: true },
+    take: limit,
+    orderBy: { expiresAt: "asc" },
+  });
+  let finalized = 0;
+  for (const attempt of attempts) {
+    await submitAttemptForUser(attempt.id, attempt.userId, "AUTO_SUBMITTED");
+    finalized += 1;
+  }
+  return { inspected: attempts.length, finalized };
 }

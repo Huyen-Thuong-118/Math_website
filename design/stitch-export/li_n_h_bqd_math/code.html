@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-tertiary-fixed-variant":"#3d484f","inverse-on-surface":"#eaf1ff","error-container":"#ffdad6","primary-container":"#1b2a4a","secondary":"#0058be","tertiary-fixed-dim":"#bcc8d1","on-tertiary":"#ffffff","tertiary":"#0c181e","on-background":"#0b1c30","secondary-container":"#2170e4","on-tertiary-fixed":"#121d23","surface":"#f8f9ff","secondary-fixed-dim":"#adc6ff","tertiary-container":"#212c33","primary":"#041534","on-error":"#ffffff","on-primary":"#ffffff","inverse-surface":"#213145","surface-tint":"#4f5e81","on-primary-fixed-variant":"#384668","on-primary-fixed":"#0a1a3a","background":"#f8f9ff","on-tertiary-container":"#88939c","inverse-primary":"#b7c6ee","primary-fixed-dim":"#b7c6ee","surface-container":"#e5eeff","on-secondary-container":"#fefcff","secondary-fixed":"#d8e2ff","surface-variant":"#d3e4fe","on-secondary-fixed-variant":"#004395","primary-fixed":"#d9e2ff","on-surface-variant":"#45464e","error":"#ba1a1a","tertiary-fixed":"#d8e4ed","surface-container-lowest":"#ffffff","on-primary-container":"#8392b7","on-error-container":"#93000a","outline-variant":"#c5c6cf","surface-bright":"#f8f9ff","on-secondary-fixed":"#001a42","surface-container-high":"#dce9ff","on-surface":"#0b1c30","surface-container-highest":"#d3e4fe","surface-container-low":"#eff4ff","outline":"#75777f","surface-dim":"#cbdbf5","on-secondary":"#ffffff"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-lg":"1.5rem",gutter:"1.5rem","space-2xl":"4rem","space-md":"1rem",margin:"2rem","space-xl":"2.5rem","space-xs":"0.25rem","space-sm":"0.5rem","margin-mobile":"1.25rem","gutter-mobile":"1rem"},fontFamily:{"label-sm":["Be Vietnam Pro"],"headline-md":["Comfortaa"],"headline-xl-mobile":["Comfortaa"],"display-hero":["Comfortaa"],"headline-sm":["Comfortaa"],"headline-lg":["Comfortaa"],"body-sm":["Be Vietnam Pro"],"label-lg":["Be Vietnam Pro"],"headline-lg-mobile":["Comfortaa"],"body-lg":["Be Vietnam Pro"],"body-md":["Be Vietnam Pro"],"label-md":["Be Vietnam Pro"],"display-hero-mobile":["Comfortaa"],"headline-xl":["Comfortaa"]},fontSize:{"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"600"}],"headline-md":["22px",{lineHeight:"30px",fontWeight:"600"}],"headline-xl-mobile":["28px",{lineHeight:"36px",letterSpacing:"0em",fontWeight:"700"}],"display-hero":["56px",{lineHeight:"68px",letterSpacing:"-0.02em",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"26px",fontWeight:"600"}],"headline-lg":["30px",{lineHeight:"40px",letterSpacing:"-0.01em",fontWeight:"600"}],"body-sm":["14px",{lineHeight:"22px",fontWeight:"400"}],"label-lg":["14px",{lineHeight:"20px",letterSpacing:"0.02em",fontWeight:"600"}],"headline-lg-mobile":["22px",{lineHeight:"30px",letterSpacing:"0em",fontWeight:"600"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}],"body-md":["16px",{lineHeight:"26px",fontWeight:"400"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.03em",fontWeight:"500"}],"display-hero-mobile":["36px",{lineHeight:"46px",letterSpacing:"-0.01em",fontWeight:"700"}],"headline-xl":["40px",{lineHeight:"50px",letterSpacing:"-0.01em",fontWeight:"700"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 inset-x-0 z-50 px-gutter-mobile md:px-margin"><div class="h-20 max-w-7xl mx-auto flex items-center justify-between mt-space-xs"><div class="w-full bg-surface-container-lowest/85 backdrop-blur-md rounded-full shadow-[0_12px_32px_-8px_rgba(27,42,74,0.07)] px-space-md lg:px-space-lg py-space-sm flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm shrink-0"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[24px]">functions</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">BQD Math</span><span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Toán THPTQG</span></div></div><nav class="hidden xl:flex items-center gap-space-xs font-label-lg text-label-lg" data-active-classes="bg-primary-container text-on-primary font-label-lg rounded-full px-space-md py-space-xs shadow-sm"><a class="px-space-md py-space-xs rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all" data-path="trang-chu" href="#">Trang chủ</a><a class="px-space-md py-space-xs rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all" data-path="lop-hoc" href="#">Lớp học</a><a class="px-space-md py-space-xs rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all" data-path="cau-hoi-on-tap" href="#">Câu hỏi ôn tập</a><a class="px-space-md py-space-xs rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all" data-path="cau-hoi-dac-trung" href="#">Câu hỏi đặc trưng</a><a class="px-space-md py-space-xs rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all" data-path="phong-thi-thu" href="#">Phòng thi thử</a><a class="px-space-md py-space-xs rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all" data-path="tai-lieu" href="#">Tài liệu</a><a class="px-space-md py-space-xs rounded-full bg-primary-container text-on-primary font-label-lg shadow-sm transition-all" data-path="lien-he" href="#">Liên hệ</a></nav><div class="flex items-center gap-space-sm shrink-0"><a class="hidden sm:inline-flex px-space-md py-space-xs rounded-full border border-outline-variant bg-surface-container-lowest text-primary font-label-lg text-label-lg hover:bg-surface-container-low transition-colors" data-path="dang-nhap" href="#">Đăng nhập</a><a class="hidden sm:inline-flex px-space-lg py-space-xs rounded-full bg-primary text-on-primary font-label-lg text-label-lg hover:bg-primary-container transition-all shadow-sm" data-path="dang-ky" href="#">Đăng ký</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-20rem)]"><div class="flex flex-col w-full">
+<!-- Top Breadcrumb & Status Bar -->
+<section class="w-full max-w-7xl mx-auto px-gutter-mobile md:px-margin pt-space-lg pb-space-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm bg-surface-container-lowest/80 backdrop-blur-md px-space-lg py-space-sm rounded-full shadow-[0_8px_24px_-6px_rgba(27,42,74,0.05)]">
+<nav class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant flex-wrap">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">home</span>
+          Trang chủ
+        </a>
+<span class="text-outline-variant">/</span>
+<span class="text-primary font-semibold">Liên hệ &amp; Hỗ trợ học viên</span>
+</nav>
+<div class="flex items-center gap-space-xs self-start md:self-auto">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
+</span>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">
+          Trực tổng đài &amp; Tư vấn lộ trình: 08:00 - 22:00
+        </span>
+</div>
+</div>
+</section>
+<!-- Hero Section (2 Columns) -->
+<section class="w-full max-w-7xl mx-auto px-gutter-mobile md:px-margin py-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Left Column: Copy & Value Proposition -->
+<div class="lg:col-span-7 flex flex-col items-start gap-space-md">
+<div class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container text-primary font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-secondary">forum</span>
+<span>Kết nối với thầy cô BQD</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary tracking-tight font-headline-xl">
+          Có câu hỏi? <span class="text-secondary underline decoration-secondary-fixed-dim decoration-4 underline-offset-8">Nhắn ngay</span> cho chúng tôi
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+          Đội ngũ trợ giảng và giáo viên BQD Math luôn sẵn sàng hỗ trợ giải đáp bài tập, tư vấn xếp lớp phù hợp và đồng hành cùng học sinh bứt phá điểm 9+ môn Toán THPTQG.
+        </p>
+<!-- Service Commitment Badges -->
+<div class="w-full pt-space-xs grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+<div class="flex items-center gap-space-xs p-space-sm bg-surface-container-low rounded-xl shadow-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[20px]">person_check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Hỗ trợ 1:1</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Giải bài chi tiết</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs p-space-sm bg-surface-container-low rounded-xl shadow-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Lời giải &lt;15p</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Trực tuyến 24/7</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs p-space-sm bg-surface-container-low rounded-xl shadow-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-bold">Test đầu vào 0đ</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Định vị năng lực</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Visual liquid glass with teacher & team card -->
+<div class="lg:col-span-5 relative">
+<!-- Ambient decorative backdrop glow -->
+<div class="absolute -top-10 -right-10 w-72 h-72 rounded-full bg-secondary-fixed/50 blur-3xl -z-10"></div>
+<div class="absolute -bottom-8 -left-8 w-60 h-60 rounded-full bg-surface-container-high/60 blur-2xl -z-10"></div>
+<div class="relative rounded-[24px] overflow-hidden shadow-[0_20px_40px_-12px_rgba(27,42,74,0.12)] bg-surface-container-lowest">
+<img class="w-full h-[400px] object-cover" data-alt="A bright modern Vietnamese mathematics study center with a passionate teacher demonstrating calculus on an interactive smartboard to focused high school students, ambient soft daylight, clean white and pastel navy tones, academic and inspiring atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPiMmmvCr-kKBvNBXRDSijkU0ktJKZCRfAAORYlN8RPYXAx1G75GmHcRlVcwuqhwlwobWvAy--PogiVKGV4Nk4ma8cnlU9gclR3PqNQu_MV2DUZ2CMUL5xF3yTeIC2w7IQAR-v7VdyiT-JDzeVNDSMKogtJLwbSHiVFTrhih_OD7G0cQnTNOzpPMVuxgcDQrIaK1RkkWsluiJRgXNdQn3smcZAZZLyBIN_rBB_CUbb0gLBAYlCI8_O"/>
+<!-- Floating badge: Top-Right -->
+<div class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-md px-space-md py-space-xs rounded-full shadow-md flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary font-bold leading-tight">Phản hồi siêu tốc</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant leading-none">Trung bình 15 phút</span>
+</div>
+</div>
+<!-- Floating card: Bottom Overlay -->
+<div class="absolute bottom-4 inset-x-4 bg-surface-container-lowest/95 backdrop-blur-md p-space-md rounded-2xl shadow-[0_12px_32px_-8px_rgba(27,42,74,0.15)] flex items-center gap-space-md">
+<div class="relative shrink-0">
+<img class="w-13 h-13 rounded-full object-cover shadow-sm w-12 h-12" data-alt="Portrait of Teacher Bui Quang Dung, a confident professional Vietnamese high school mathematics educator in a navy blue tailored shirt with friendly warm expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEqNlfuSzWISvByaPiQlelwDvT6U8D269yQctriAHH76ykGE3VbEn2_pwcjTItcxcUmetzk_2BiutQJkvyv-B3Ki6o5XPSgDCzMekK7eJM4GohspohW20VpT_NHdnUw85kIzQGKSHlBf97M6qUIZv4YZaKi5Apk8Av65_PHqwjBxoJrLoxw0WnVkl7cWmK_O7jmFbr7RJK00NDXKujRmYhGmInDcy8cs3mZ2ij9-F1MngaLnCUU6OE"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-white"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-[15px] font-bold text-primary truncate">Thầy Bùi Quang Dũng &amp; Ban Trợ Giảng</span>
+<p class="font-body-sm text-[13px] text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                8 cố vấn chuyên môn đang trực tuyến
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Direct Contact Cards Grid -->
+<section class="w-full bg-surface-container-low/60 py-space-2xl">
+<div class="max-w-7xl mx-auto px-gutter-mobile md:px-margin">
+<div class="flex flex-col items-center text-center mb-space-xl">
+<span class="px-space-md py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm uppercase tracking-wider mb-space-xs font-bold">Kênh hỗ trợ chính thức</span>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">Liên hệ trực tiếp theo nhu cầu</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mt-space-xs">
+          Lựa chọn kênh giao tiếp thuận tiện nhất để nhận tư vấn học tập hoặc hỗ trợ kỹ thuật bài giảng.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<!-- Card 1: Hotline & Zalo -->
+<div class="bg-surface-container-lowest rounded-[22px] p-space-lg shadow-[0_12px_28px_-8px_rgba(27,42,74,0.06)] hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+<div class="flex flex-col gap-space-sm">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[28px]">phone_in_talk</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">Hỗ trợ 24/7</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-0.5">Hotline &amp; Zalo</h3>
+</div>
+<p class="font-headline-md text-[20px] text-secondary font-bold tracking-tight">
+              0988.xxx.xxx
+            </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Tư vấn đăng ký khóa học, chuyển lớp, học phí và nhận tài liệu ôn tập độc quyền.
+            </p>
+</div>
+<div class="flex items-center gap-space-xs pt-space-md">
+<a class="flex-1 py-2.5 px-3 rounded-full bg-primary text-on-primary font-label-md text-label-md text-center hover:bg-primary-container transition-colors shadow-sm" href="tel:0988000000">
+              Gọi ngay
+            </a>
+<a class="flex-1 py-2.5 px-3 rounded-full bg-surface-container text-primary font-label-md text-label-md text-center hover:bg-surface-container-high transition-colors" href="https://zalo.me" rel="noopener noreferrer" target="_blank">
+              Nhắn Zalo
+            </a>
+</div>
+</div>
+<!-- Card 2: Facebook Fanpage -->
+<div class="bg-surface-container-lowest rounded-[22px] p-space-lg shadow-[0_12px_28px_-8px_rgba(27,42,74,0.06)] hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+<div class="flex flex-col gap-space-sm">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[28px]">public</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">Cộng đồng học sinh</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-0.5">BQD Math Fanpage</h3>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span class="font-bold text-primary">45.000+ theo dõi</span>
+<span>·</span>
+<span class="flex items-center text-amber-600 font-bold">
+<span class="material-symbols-outlined text-[16px] text-amber-500 mr-0.5" style="font-variation-settings: 'FILL' 1;">star</span> 4.9/5
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Cập nhật lịch livestream chữa đề tối T3 - T6 và phát hành file PDF lời giải VDC.
+            </p>
+</div>
+<div class="pt-space-md">
+<a class="w-full py-2.5 px-space-md rounded-full bg-surface-container text-primary font-label-md text-label-md inline-flex items-center justify-center gap-2 hover:bg-primary hover:text-on-primary transition-all" href="https://facebook.com" rel="noopener noreferrer" target="_blank">
+<span>Mở Facebook</span>
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Card 3: Address & Studio (Interactive Modal Trigger) -->
+<div class="bg-surface-container-lowest rounded-[22px] p-space-lg shadow-[0_12px_28px_-8px_rgba(27,42,74,0.06)] hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer" onclick="document.getElementById('map-modal').classList.remove('hidden')">
+<div class="flex flex-col gap-space-sm">
+<div class="w-14 h-14 rounded-2xl bg-secondary text-on-secondary flex items-center justify-center group-hover:scale-105 transition-transform shadow-sm">
+<span class="material-symbols-outlined text-[28px]">location_on</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">Cơ sở trực tiếp</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-0.5">Phòng Học Cầu Giấy</h3>
+</div>
+<p class="font-body-md text-body-md text-primary font-semibold">
+              123 Đường Cầu Giấy, Q. Cầu Giấy, Hà Nội
+            </p>
+<p class="font-body-sm text-body-sm text-secondary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">navigation</span>
+              Nhấn để xem bản đồ &amp; chỉ đường chi tiết
+            </p>
+</div>
+<div class="pt-space-md">
+<button class="w-full py-2.5 px-space-md rounded-full bg-primary text-on-primary font-label-md text-label-md inline-flex items-center justify-center gap-1.5 shadow-sm group-hover:bg-primary-container transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">map</span>
+<span>Xem bản đồ tương tác</span>
+</button>
+</div>
+</div>
+<!-- Card 4: Working Hours -->
+<div class="bg-surface-container-lowest rounded-[22px] p-space-lg shadow-[0_12px_28px_-8px_rgba(27,42,74,0.06)] hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+<div class="flex flex-col gap-space-sm">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[28px]">calendar_month</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">Thời gian phục vụ</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-0.5">Lịch trực hỗ trợ</h3>
+</div>
+<div class="space-y-2 pt-1">
+<div class="bg-surface-container-low p-2 rounded-xl">
+<span class="font-label-sm text-label-sm text-primary font-bold block">Thứ 2 - Thứ 6: 08:00 - 21:30</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant block">Trực giải đáp &amp; học ca tối</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded-xl">
+<span class="font-label-sm text-label-sm text-primary font-bold block">Thứ 7 - CN: 07:30 - 22:00</span>
+<span class="font-body-sm text-[12px] text-on-surface-variant block">Phòng thi thử &amp; Chữa đề VDC</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md">
+<div class="w-full py-2 px-3 rounded-full bg-emerald-50 text-emerald-700 font-label-sm text-label-sm text-center font-bold flex items-center justify-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              Đang mở cửa tiếp đón học viên
+            </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Map Showcase Section (Embedded Preview + Modal Overlay) -->
+<section class="w-full max-w-7xl mx-auto px-gutter-mobile md:px-margin py-space-2xl">
+<div class="bg-surface-container-lowest rounded-[24px] p-space-lg md:p-space-xl shadow-[0_20px_40px_-12px_rgba(27,42,74,0.08)] flex flex-col gap-space-lg">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div>
+<span class="px-space-md py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm uppercase font-bold tracking-wider">Vị trí lớp học</span>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight mt-1">Đường đến trung tâm BQD Math</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Tầng 3, Tòa nhà Tri Thức, Số 123 Đường Cầu Giấy, Quận Cầu Giấy, Hà Nội</p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="px-space-lg py-2.5 rounded-full bg-surface-container text-primary font-label-md text-label-md hover:bg-surface-container-high transition-colors flex items-center gap-1.5" onclick="navigator.clipboard?.writeText('Tầng 3, Tòa nhà Tri Thức, Số 123 Đường Cầu Giấy, Quận Cầu Giấy, Hà Nội'); alert('Đã sao chép địa chỉ thành công!');" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+            Sao chép địa chỉ
+          </button>
+<a class="px-space-lg py-2.5 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-all shadow-sm flex items-center gap-1.5" href="https://maps.google.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">directions</span>
+            Mở chỉ đường
+          </a>
+</div>
+</div>
+<!-- High-Fidelity Static Map Container -->
+<div class="relative w-full h-80 md:h-96 rounded-2xl overflow-hidden bg-surface-container-high shadow-inner">
+<div class="w-full h-full bg-cover bg-center" data-location="123 Cầu Giấy, Quan Hoa, Cầu Giấy, Hà Nội" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7I8mtDgk2axajBmY760fWbWk-n-b4mclZK6INiNOgnKUKAjUOD4WZ2h8kMnr4-AecPcAajFXQH-ALhrFDkBPNn-R7FIixjXF2gaKBxiHtJl_wa_KBS-8evCr3J0ssxu8Oe31Ni5Ozn9U7b9nqIHerU31oyIWtYDpLFjB_0kl5qL5d41kIPGZoA6a_JVRBfHjwf3iOZ_mnYitbZ2gdXyjIKQw9WJuo3JIGY0p6_fDhYsKhsK4VLIwH')"></div>
+<!-- Overlaid Visual Landmarks Ribbon -->
+<div class="absolute bottom-4 left-4 right-4 flex flex-wrap items-center gap-space-xs">
+<div class="bg-surface-container-lowest/90 backdrop-blur-md px-space-md py-1.5 rounded-full text-primary font-label-sm text-label-sm shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">train</span>
+            Cách ga Metro Chùa Hà 200m
+          </div>
+<div class="bg-surface-container-lowest/90 backdrop-blur-md px-space-md py-1.5 rounded-full text-primary font-label-sm text-label-sm shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[16px]">directions_bus</span>
+            Điểm dừng xe buýt tuyến 07, 20, 26, 32
+          </div>
+<div class="bg-surface-container-lowest/90 backdrop-blur-md px-space-md py-1.5 rounded-full text-primary font-label-sm text-label-sm shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-emerald-600 text-[16px]">local_parking</span>
+            Bãi đỗ ô tô &amp; xe máy miễn phí
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Map Modal (Triggered by Card 3 or can be dismissed) -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm" id="map-modal">
+<div class="relative w-full max-w-3xl bg-surface-container-lowest rounded-[24px] shadow-[0_24px_48px_-12px_rgba(27,42,74,0.25)] overflow-hidden flex flex-col max-h-[921px]">
+<!-- Modal Header -->
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">pin_drop</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-primary">Vị trí BQD Math Academy</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tầng 3, 123 Đường Cầu Giấy, Quan Hoa, Cầu Giấy, Hà Nội</span>
+</div>
+</div>
+<button class="w-9 h-9 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-primary transition-colors" onclick="document.getElementById('map-modal').classList.add('hidden')" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Modal Map Body -->
+<div class="relative w-full h-80 bg-surface-container">
+<div class="w-full h-full bg-cover bg-center" data-location="123 Cau Giay, Hanoi, Vietnam" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB7I8mtDgk2axajBmY760fWbWk-n-b4mclZK6INiNOgnKUKAjUOD4WZ2h8kMnr4-AecPcAajFXQH-ALhrFDkBPNn-R7FIixjXF2gaKBxiHtJl_wa_KBS-8evCr3J0ssxu8Oe31Ni5Ozn9U7b9nqIHerU31oyIWtYDpLFjB_0kl5qL5d41kIPGZoA6a_JVRBfHjwf3iOZ_mnYitbZ2gdXyjIKQw9WJuo3JIGY0p6_fDhYsKhsK4VLIwH')"></div>
+<div class="absolute top-4 left-4 bg-surface-container-lowest/95 backdrop-blur-sm p-space-sm rounded-xl shadow-lg max-w-xs">
+<p class="font-label-md text-label-md font-bold text-primary">Trung tâm Toán THPTQG BQD Math</p>
+<p class="font-body-sm text-[12px] text-on-surface-variant mt-0.5">Tiếp đón phụ huynh &amp; học sinh tư vấn trực tiếp tất cả các ngày trong tuần.</p>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="px-space-lg py-space-md bg-surface-container-lowest flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Hotline hỗ trợ chỉ đường: 0988.xxx.xxx</span>
+<div class="flex items-center gap-space-sm w-full sm:w-auto">
+<button class="flex-1 sm:flex-initial px-space-md py-2 rounded-full bg-surface-container text-primary font-label-md text-label-md hover:bg-surface-container-high transition-colors" onclick="navigator.clipboard?.writeText('123 Đường Cầu Giấy, Hà Nội'); alert('Đã chép địa chỉ!');" type="button">
+            Sao chép
+          </button>
+<a class="flex-1 sm:flex-initial px-space-lg py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-all text-center" href="https://maps.google.com" rel="noopener noreferrer" target="_blank">
+            Mở trên Google Maps
+          </a>
+</div>
+</div>
+</div>
+</div>
+<!-- Form & Submission Status Section (2 Columns) -->
+<section class="w-full bg-surface-container-low/40 py-space-2xl">
+<div class="max-w-7xl mx-auto px-gutter-mobile md:px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- Left Column: Form -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-[24px] p-space-lg md:p-space-xl shadow-[0_16px_36px_-10px_rgba(27,42,74,0.06)]">
+<div class="mb-space-md">
+<span class="px-space-md py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm uppercase font-bold tracking-wider">Hòm thư giải đáp</span>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight mt-1">Gửi thắc mắc học tập</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+              Điền thông tin bên dưới để đăng ký tư vấn lộ trình 9+ hoặc nhận phản hồi bài toán khó từ thầy cô.
+            </p>
+</div>
+<form class="flex flex-col gap-space-md" id="contact-form" onsubmit="event.preventDefault(); document.getElementById('success-card').scrollIntoView({behavior: 'smooth'});">
+<!-- Full Name & Phone Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-primary font-semibold">Họ và tên học sinh / phụ huynh *</label>
+<input class="w-full h-12 px-space-md rounded-full bg-surface-container-low text-primary placeholder-on-surface-variant/60 focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary transition-all font-body-md text-body-md" placeholder="Ví dụ: Nguyễn Hoàng Nam" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-primary font-semibold">Số điện thoại liên hệ (có Zalo) *</label>
+<input class="w-full h-12 px-space-md rounded-full bg-surface-container-low text-primary placeholder-on-surface-variant/60 focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary transition-all font-body-md text-body-md" placeholder="Ví dụ: 0988 123 456" required="" type="tel"/>
+</div>
+</div>
+<!-- Grade / Course Select -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-primary font-semibold">Khóa học / Mục tiêu điểm số đang quan tâm</label>
+<div class="relative">
+<select class="w-full h-12 px-space-md rounded-full bg-surface-container-low text-primary focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary transition-all font-body-md text-body-md appearance-none cursor-pointer">
+<option value="12-vdc">Toán 12 - Chuyên đề Vận Dụng Cao 9+ (Hàm số, Oxyz, Tích phân)</option>
+<option value="12-full">Toán 12 - Khóa Học Cơ Bản &amp; Toàn Diện Điểm 8+</option>
+<option value="cap-toc">Khóa Luyện Đề Thực Chiến &amp; Cấp Tốc 30 Ngày</option>
+<option value="11-12">Khóa Tạo Nền Toán 11 Lên 12</option>
+<option value="tu-van">Em chưa rõ mục tiêu, cần Thầy Dũng tư vấn lộ trình</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- Support Type (Radio Pills) -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-primary font-semibold">Vấn đề cần hỗ trợ</label>
+<div class="flex flex-wrap gap-2">
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="support_type" type="radio" value="tuvan"/>
+<span class="inline-flex px-space-md py-2 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm peer-checked:bg-primary peer-checked:text-on-primary transition-all">
+                    Tư vấn khóa học
+                  </span>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="support_type" type="radio" value="baitap"/>
+<span class="inline-flex px-space-md py-2 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm peer-checked:bg-primary peer-checked:text-on-primary transition-all">
+                    Hỏi bài tập khó
+                  </span>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="support_type" type="radio" value="thithu"/>
+<span class="inline-flex px-space-md py-2 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm peer-checked:bg-primary peer-checked:text-on-primary transition-all">
+                    Đăng ký thi thử THPTQG
+                  </span>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="support_type" type="radio" value="hocphi"/>
+<span class="inline-flex px-space-md py-2 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm peer-checked:bg-primary peer-checked:text-on-primary transition-all">
+                    Chính sách học phí &amp; Ưu đãi
+                  </span>
+</label>
+</div>
+</div>
+<!-- Message details -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-primary font-semibold">Nội dung tin nhắn / Đính kèm câu hỏi</label>
+<textarea class="w-full p-space-md rounded-2xl bg-surface-container-low text-primary placeholder-on-surface-variant/60 focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary transition-all font-body-md text-body-md resize-none" placeholder="Mô tả cụ thể câu hỏi hoặc mục tiêu điểm số hiện tại của em (ví dụ: Em đang được 6.4 điểm, mong muốn thi trường ĐH Ngoại Thương khối A00...)" rows="4"></textarea>
+</div>
+<!-- Submit CTA -->
+<div class="pt-space-xs">
+<button class="w-full sm:w-auto px-space-xl py-3 rounded-full bg-primary text-on-primary font-label-lg text-label-lg hover:bg-primary-container transition-all shadow-md flex items-center justify-center gap-2" type="submit">
+<span>Gửi thắc mắc cho thầy cô</span>
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Right Column: Visual Live Success Status Card -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg" id="success-card">
+<div class="bg-surface-container rounded-[22px] p-space-lg md:p-space-xl shadow-[0_16px_36px_-10px_rgba(33,112,228,0.12)] flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="w-14 h-14 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shadow-lg shadow-emerald-500/20">
+<span class="material-symbols-outlined text-[32px]">check_circle</span>
+</div>
+<span class="font-label-sm text-label-sm px-space-md py-1 rounded-full bg-surface-container-lowest text-secondary font-bold">
+                Trạng thái: Đã tiếp nhận
+              </span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary font-bold">Đã gửi thông tin thành công!</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+                Cảm ơn bạn <span class="font-bold text-primary">Nguyễn Hoàng Nam</span> đã để lại lời nhắn. Thầy BQD và đội ngũ trợ giảng sẽ liên hệ qua Zalo <span class="font-bold text-primary">0988.xxx.xxx</span> trong vòng 15 phút tới.
+              </p>
+</div>
+<div class="bg-surface-container-lowest/80 rounded-xl p-space-md flex flex-col gap-1.5 font-label-sm text-label-sm text-on-surface-variant">
+<div class="flex justify-between items-center">
+<span>Mã số phiếu tư vấn:</span>
+<span class="font-mono font-bold text-secondary">#BQD-SUPPORT-2025-992</span>
+</div>
+<div class="flex justify-between items-center">
+<span>Chuyên viên phụ trách:</span>
+<span class="font-bold text-primary">Cô Mai Linh (Ban Chuyên Môn)</span>
+</div>
+<div class="flex justify-between items-center">
+<span>Thời gian phản hồi dự kiến:</span>
+<span class="font-bold text-emerald-700">Trước 14:15 hôm nay</span>
+</div>
+</div>
+<div class="pt-space-xs flex flex-col sm:flex-row gap-space-xs">
+<a class="flex-1 py-2.5 px-space-md rounded-full bg-surface-container-lowest text-primary text-center font-label-md text-label-md hover:bg-surface-container-high transition-colors" href="#">
+                Xem lịch khai giảng mới
+              </a>
+<button class="flex-1 py-2.5 px-space-md rounded-full bg-transparent text-secondary text-center font-label-md text-label-md hover:underline" onclick="document.getElementById('contact-form').reset(); alert('Form đã được đặt lại để gửi thắc mắc mới!');" type="button">
+                Gửi thêm câu hỏi khác
+              </button>
+</div>
+</div>
+<!-- Academic Assurance mini card -->
+<div class="bg-surface-container-lowest rounded-[20px] p-space-md shadow-sm flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-primary">Bảo mật thông tin 100%</span>
+<span class="font-body-sm text-[13px] text-on-surface-variant">
+                Thông tin học tập và số điện thoại của học sinh được bảo mật tuyệt đối theo quy chuẩn BQD Math.
+              </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 6: FAQ Accordion -->
+<section class="w-full max-w-7xl mx-auto px-gutter-mobile md:px-margin py-space-2xl">
+<div class="flex flex-col items-center text-center mb-space-xl">
+<span class="px-space-md py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm uppercase font-bold tracking-wider mb-space-xs">Giải đáp thắc mắc</span>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">Những câu hỏi học sinh &amp; phụ huynh thường quan tâm</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mt-space-xs">
+        Tổng hợp lời giải đáp chi tiết cho những băn khoăn phổ biến khi bắt đầu đồng hành cùng BQD Math.
+      </p>
+</div>
+<div class="max-w-4xl mx-auto flex flex-col gap-space-md">
+<!-- FAQ 1 (Open by default) -->
+<details class="group bg-surface-container-lowest rounded-[20px] p-space-lg shadow-[0_8px_20px_-6px_rgba(27,42,74,0.04)]" open="">
+<summary class="flex items-center justify-between cursor-pointer list-none select-none font-headline-sm text-headline-sm text-primary group-open:text-secondary transition-colors">
+<span class="pr-space-md">1. Em đang ở mức 6 - 7 điểm thì nên đăng ký lớp nào để đạt 8.8+?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary shrink-0">keyboard_arrow_down</span>
+</summary>
+<div class="pt-space-md font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Với mức điểm 6 - 7, học sinh thường bị mất điểm ở các câu hỏi thông hiểu bẫy và chưa có phương pháp tư duy bài toán vận dụng (câu 38 - 45). Lộ trình tối ưu nhất là tham gia <strong>Khóa Toàn Diện 8+</strong> trong 4 tuần đầu để lấp trọn lỗ hổng lý thuyết, sau đó chuyển thẳng sang lớp <strong>Chuyên đề VDC 9+</strong> kết hợp luyện đề thực chiến bấm giờ.
+        </div>
+</details>
+<!-- FAQ 2 -->
+<details class="group bg-surface-container-lowest rounded-[20px] p-space-lg shadow-[0_8px_20px_-6px_rgba(27,42,74,0.04)]">
+<summary class="flex items-center justify-between cursor-pointer list-none select-none font-headline-sm text-headline-sm text-primary group-open:text-secondary transition-colors">
+<span class="pr-space-md">2. Học sinh ở xa hoặc tỉnh khác có thể tham gia lớp học và phòng thi thử không?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary shrink-0">keyboard_arrow_down</span>
+</summary>
+<div class="pt-space-md font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Hoàn toàn được! Toàn bộ bài giảng tại BQD Math đều có hệ sinh thái số hóa 100%: Livestream tương tác 2 chiều, video record 4K xem lại không giới hạn, và phòng thi thử Online đồng bộ thời gian thực chuẩn cấu trúc Bộ GD&amp;ĐT. Tài liệu bản cứng có đóng dấu mờ DRM cá nhân sẽ được chuyển phát nhanh về tận nhà cho các bạn ở tỉnh xa.
+        </div>
+</details>
+<!-- FAQ 3 -->
+<details class="group bg-surface-container-lowest rounded-[20px] p-space-lg shadow-[0_8px_20px_-6px_rgba(27,42,74,0.04)]">
+<summary class="flex items-center justify-between cursor-pointer list-none select-none font-headline-sm text-headline-sm text-primary group-open:text-secondary transition-colors">
+<span class="pr-space-md">3. Chính sách học thử và cam kết tiến bộ môn Toán tại BQD ra sao?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary shrink-0">keyboard_arrow_down</span>
+</summary>
+<div class="pt-space-md font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Mỗi học sinh mới được quyền tham gia <strong>02 buổi học thử trực tiếp</strong> hoặc làm bài test đánh giá năng lực hoàn toàn miễn phí. BQD Math cam kết nếu học viên hoàn thành tối thiểu 85% bài tập về nhà và tham gia đủ các ca thi thử hàng tuần, điểm số thi khảo sát trường sẽ tăng từ 1.5 đến 2.5 điểm sau 2 tháng theo học.
+        </div>
+</details>
+<!-- FAQ 4 -->
+<details class="group bg-surface-container-lowest rounded-[20px] p-space-lg shadow-[0_8px_20px_-6px_rgba(27,42,74,0.04)]">
+<summary class="flex items-center justify-between cursor-pointer list-none select-none font-headline-sm text-headline-sm text-primary group-open:text-secondary transition-colors">
+<span class="pr-space-md">4. Làm thế nào để được thêm vào lớp chuyên đề VDC 9+ đang bị khóa?</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary shrink-0">keyboard_arrow_down</span>
+</summary>
+<div class="pt-space-md font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Khóa VDC 9+ yêu cầu học sinh phải vượt qua bài kiểm tra trắc nghiệm 25 câu trong 45 phút đạt từ 7.5 điểm trở lên để đảm bảo bắt kịp nhịp độ tư duy nhanh của lớp. Bạn hãy gửi yêu cầu vào biểu mẫu ở trên hoặc liên hệ trực tiếp qua Zalo để trợ giảng cấp mã đề kiểm tra năng lực đầu vào.
+        </div>
+</details>
+</div>
+</section>
+<!-- Bottom CTA Band -->
+<section class="w-full max-w-7xl mx-auto px-gutter-mobile md:px-margin pb-space-2xl">
+<div class="w-full bg-primary text-on-primary rounded-[24px] p-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg relative overflow-hidden">
+<div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-secondary/20 blur-3xl pointer-events-none"></div>
+<div class="flex flex-col gap-space-xs z-10 text-center md:text-left">
+<span class="font-label-sm text-label-sm text-secondary-fixed uppercase font-bold tracking-widest">Sẵn sàng bứt phá</span>
+<h3 class="font-headline-lg text-headline-lg text-on-primary tracking-tight">Tham gia lớp học cùng Thầy Dũng ngay tuần này</h3>
+<p class="font-body-md text-body-md text-on-primary-container max-w-xl">
+          Đừng để những câu hỏi khó làm chậm bước chân vào cánh cổng trường đại học mơ ước của em.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm z-10 shrink-0 flex-wrap justify-center">
+<a class="px-space-xl py-3 rounded-full bg-secondary text-on-secondary font-label-lg text-label-lg hover:bg-secondary-container transition-all shadow-md" href="tel:0988000000">
+          Gọi hotline tư vấn
+        </a>
+<a class="px-space-lg py-3 rounded-full bg-surface-container-lowest/10 text-on-primary font-label-lg text-label-lg hover:bg-surface-container-lowest/20 backdrop-blur-md transition-all" href="#">
+          Xem thông tin lớp học
+        </a>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-primary text-on-primary mt-space-2xl pt-space-2xl pb-space-xl"><div class="max-w-7xl mx-auto px-gutter-mobile md:px-margin grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl"><div class="lg:col-span-2 flex flex-col gap-space-md"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center text-on-secondary"><span class="material-symbols-outlined text-[20px]">functions</span></div><span class="font-headline-md text-headline-md text-on-primary tracking-tight">BQD Math</span></div><p class="font-body-md text-body-md text-on-primary-container italic">Vững tư duy, bứt phá điểm 9+</p><div class="flex flex-col gap-space-xs font-body-sm text-body-sm text-surface-variant mt-space-sm"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary-fixed">call</span><span>Hotline/Zalo: 0988.xxx.xxx</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary-fixed">public</span><span>Fanpage: BQD Math - Luyện thi THPTQG</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary-fixed">location_on</span><span>Địa chỉ: 123 Đường Cầu Giấy, Hà Nội</span></div></div></div><div class="flex flex-col gap-space-sm"><span class="font-headline-sm text-headline-sm text-on-primary mb-space-xs">Khóa học</span><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-primary-container"><li><a class="hover:text-on-primary transition-colors" data-path="lop-hoc" href="#">Toán 12 Cơ bản &amp; Nâng cao</a></li><li><a class="hover:text-on-primary transition-colors" data-path="lop-hoc" href="#">Luyện đề Thực chiến THPTQG</a></li><li><a class="hover:text-on-primary transition-colors" data-path="lop-hoc" href="#">Chuyên đề Vận dụng cao 9+</a></li><li><a class="hover:text-on-primary transition-colors" data-path="lop-hoc" href="#">Khóa cấp tốc 30 ngày</a></li></ul></div><div class="flex flex-col gap-space-sm"><span class="font-headline-sm text-headline-sm text-on-primary mb-space-xs">Tài liệu &amp; Đề thi</span><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-primary-container"><li><a class="hover:text-on-primary transition-colors" data-path="tai-lieu" href="#">Đề thi thử THPT Toàn quốc</a></li><li><a class="hover:text-on-primary transition-colors" data-path="cau-hoi-dac-trung" href="#">50 Dạng toán đặc trưng</a></li><li><a class="hover:text-on-primary transition-colors" data-path="cau-hoi-on-tap" href="#">Ngân hàng câu hỏi trắc nghiệm</a></li><li><a class="hover:text-on-primary transition-colors" data-path="tai-lieu" href="#">Công thức &amp; Sơ đồ tư duy</a></li></ul></div><div class="flex flex-col gap-space-sm"><span class="font-headline-sm text-headline-sm text-on-primary mb-space-xs">Hỗ trợ &amp; Liên hệ</span><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-primary-container"><li><a class="hover:text-on-primary transition-colors" data-path="phong-thi-thu" href="#">Hướng dẫn phòng thi thử</a></li><li><a class="hover:text-on-primary transition-colors" data-path="lien-he" href="#">Hỏi đáp bài tập trực tiếp</a></li><li><a class="hover:text-on-primary transition-colors" data-path="lien-he" href="#">Chính sách bảo mật học viên</a></li><li><a class="hover:text-on-primary transition-colors" data-path="lien-he" href="#">Hệ thống trung tâm &amp; Lịch học</a></li></ul></div></div><div class="max-w-7xl mx-auto px-gutter-mobile md:px-margin mt-space-2xl pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm font-label-md text-label-md text-on-primary-container"><p>Copyright © 2025 BQD Math. All rights reserved.</p><p class="text-secondary-fixed">Nền tảng Toán THPTQG Chuyên Sâu</p></div></footer></body></html>

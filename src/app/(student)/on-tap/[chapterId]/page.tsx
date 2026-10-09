@@ -23,7 +23,7 @@ export default async function ReviewQuestionsPage({
   return (
     <section className="space-y-5">
       <Link href="/on-tap" className="text-sm font-semibold text-navy-400">← Các chương</Link>
-      <h1 className="text-2xl font-semibold text-navy-600">{chapter.name}</h1>
+      <h1>{chapter.name}</h1>
       <StudentReviewQuestionFilters chapterId={chapterId} filters={filters} options={filterOptions} total={pagination.total} />
       <ReviewPractice questions={questions} />
       <ReviewQuestionPagination pathname={`/on-tap/${chapterId}`} filters={filters} page={pagination.page} totalPages={pagination.totalPages} />

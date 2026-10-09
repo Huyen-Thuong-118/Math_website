@@ -3,6 +3,7 @@
 import { Prisma } from "@prisma/client";
 
 import { auth } from "@/auth";
+import { hasCurrentCredentialVersion } from "@/features/auth/lib/credential-version";
 import { db } from "@/lib/db";
 import { validateParentPhone, validatePhone } from "../lib/validation";
 
@@ -39,8 +40,27 @@ export async function completeGoogleProfile(
   }
 
   try {
+    const current = await db.user.findUnique({
+      where: { id: session.user.id },
+      select: { credentialVersion: true },
+    });
+    if (
+      !current ||
+      !hasCurrentCredentialVersion(
+        session.user.credentialVersion,
+        current.credentialVersion,
+      )
+    ) {
+      return { success: false, error: "Phiên đăng nhập không còn hiệu lực." };
+    }
+    // Mã học sinh KHÔNG cấp ở đây: admin duyệt tài khoản mới cấp số thứ tự
+    // (nextStudentCode trong features/accounts/actions.ts).
     await db.user.update({
-      where: { id: session.user.id, role: "STUDENT" },
+      where: {
+        id: session.user.id,
+        role: "STUDENT",
+        credentialVersion: current.credentialVersion,
+      },
       data: { studentPhone, parentPhone },
     });
     return { success: true };

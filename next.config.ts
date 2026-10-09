@@ -10,6 +10,7 @@ const contentSecurityPolicy = [
   "connect-src 'self' https://storage.googleapis.com https://*.storage.googleapis.com https://*.cloudflarestream.com",
   "media-src 'self' blob: https://*.cloudflarestream.com",
   "worker-src 'self' blob:",
+  "frame-src https://www.google.com", // modal bản đồ ở /lien-he (Google Maps embed)
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -25,6 +26,12 @@ const nextConfig: NextConfig = {
   // Cloud Run đang chuyển traffic giữa hai revision.
   deploymentId: process.env.DEPLOYMENT_VERSION,
   poweredByHeader: false,
+  // "Theo dõi học tập" đã chuyển vào khu tài khoản — giữ link cũ không chết.
+  async redirects() {
+    return [
+      { source: "/theo-doi-hoc-tap", destination: "/tai-khoan/theo-doi-hoc-tap", permanent: true },
+    ];
+  },
   experimental: {
     // Local chưa có Cloud Storage nên Server Action có thể nhận cùng lúc hai PDF,
     // mỗi file tối đa 20 MB. Chừa thêm dung lượng cho multipart/form-data.

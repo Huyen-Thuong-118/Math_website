@@ -62,6 +62,7 @@ model User {
   // Đánh dấu mật khẩu vừa được admin reset — bắt buộc HS đổi mật khẩu ở
   // lần đăng nhập tiếp theo thay vì tiếp tục dùng mật khẩu tạm admin biết.
   mustChangePassword Boolean @default(false)
+  credentialVersion  Int     @default(1)
 
   emailOptIn  Boolean   @default(false) // đăng ký nhận email khi có đề mới
   suspendedAt DateTime? // chỉ có giá trị khi status = SUSPENDED, xem features/accounts
@@ -80,6 +81,7 @@ model User {
   accounts          Account[]
   sessions          Session[]
   passwordResetOtps PasswordResetOtp[]
+  passwordResetGrants PasswordResetGrant[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -126,18 +128,36 @@ model VerificationToken {
 }
 
 // Riêng cho OTP quên mật khẩu — KHÔNG dùng chung VerificationToken của
-// NextAuth vì cần lưu mã dạng hash (không phải token dài ngẫu nhiên) kèm
+// NextAuth vì cần lưu mã dạng HMAC (không phải token dài ngẫu nhiên) kèm
 // trạng thái đã dùng hay chưa (consumedAt).
 model PasswordResetOtp {
-  id         String    @id @default(cuid())
-  userId     String
-  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  codeHash   String // hash SHA-256 của mã OTP 6 số, không lưu plaintext
-  expiresAt  DateTime // ví dụ: tạo lúc gửi + 5 phút
-  consumedAt DateTime?
-  createdAt  DateTime  @default(now())
+  id           String    @id @default(cuid())
+  userId       String
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  codeHash     String // HMAC của mã OTP 6 số, không lưu plaintext
+  expiresAt    DateTime // ví dụ: tạo lúc gửi + 5 phút
+  consumedAt   DateTime?
+  attemptCount Int       @default(0)
+  createdAt    DateTime  @default(now())
+
+  resetGrant PasswordResetGrant?
 
   @@index([userId])
+}
+
+model PasswordResetGrant {
+  id          String   @id @default(cuid())
+  userId      String
+  challengeId String   @unique
+  tokenHash   String   @unique
+  expiresAt   DateTime
+  consumedAt  DateTime?
+  createdAt   DateTime @default(now())
+
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  challenge PasswordResetOtp @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expiresAt])
 }
 
 // ---------------- LỚP HỌC ----------------
@@ -390,6 +410,11 @@ enum ExamStatus {
   CLOSED
 }
 
+enum AttemptSubmissionReason {
+  SUBMITTED
+  AUTO_SUBMITTED
+}
+
 model ExamAttempt {
   id      String   @id @default(cuid())
   examId  String
@@ -405,6 +430,7 @@ model ExamAttempt {
   startedAt   DateTime  @default(now())
   expiresAt   DateTime?
   submittedAt DateTime?
+  submissionReason AttemptSubmissionReason?
 
   correctCount    Int?
   incorrectCount  Int?
@@ -440,13 +466,15 @@ model AttemptAnswer {
 // Sort khi hiển thị: theo questionNumber -> changedAt.
 model AnswerHistory {
   id             String      @id @default(cuid())
+  eventId        String      @unique
   attemptId      String
   attempt        ExamAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
   questionNumber Int
-  selectedAnswer String
+  selectedAnswer String?
   changedAt      DateTime    @default(now())
+  receivedAt     DateTime    @default(now())
 
-  @@index([attemptId, questionNumber])
+  @@index([attemptId, questionNumber, changedAt])
 }
 
 // ---------------- CÂU HỎI ÔN TẬP ----------------

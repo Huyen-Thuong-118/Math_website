@@ -24,7 +24,7 @@ export async function POST(
   try {
     const userId = await requireActiveStudentId();
     const { attemptId } = await params;
-    const body: unknown = await request.json();
+    const body: unknown = await request.json().catch(() => null);
 
     if (!validateAnswerBatch(body)) {
       return Response.json(
@@ -40,7 +40,11 @@ export async function POST(
     }
 
     const result = await saveAnswerBatchForUser(userId, body);
-    return Response.json({ success: true, saved: result.count });
+    return Response.json({
+      success: true,
+      saved: result.count,
+      acknowledgedEventIds: result.acknowledgedEventIds,
+    });
   } catch (error) {
     if (error instanceof ExamAccessError) {
       return Response.json(

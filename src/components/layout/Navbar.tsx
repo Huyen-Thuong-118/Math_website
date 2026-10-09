@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
-import { Bell, KeyRound, LogIn, LogOut, Menu, Search, ShieldCheck, UserPlus, X } from "lucide-react";
+import { Bell, ChartNoAxesColumnIncreasing, KeyRound, LogIn, LogOut, Menu, Search, ShieldCheck, UserPlus, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
@@ -29,8 +29,8 @@ import { ADMIN_NAV_LINKS, NAV_LINKS } from "./navLinks";
  *
  * Bố cục 3 vùng: trái = logo BQDMath (về "/") · giữa = NAV_LINKS ·
  * phải = cụm Đăng nhập/Đăng ký tách riêng bằng 1 vạch ngăn mảnh.
- * Chia 3 cột `1fr auto 1fr` để cụm menu giữa luôn nằm chính giữa thanh,
- * không bị lệch khi logo và cụm nút 2 bên rộng khác nhau.
+ * Chia 3 cột `auto 1fr auto`: logo và cụm tài khoản co theo nội dung (tên học
+ * sinh dài không bị cắt), menu chiếm phần còn lại và căn giữa.
  *
  * KHÔNG bọc `max-w-6xl` như <main>: nội dung nav chạy hết bề ngang để cụm
  * Đăng nhập/Đăng ký nằm sát mép phải màn hình. Đổi lại logo cũng ra sát mép
@@ -42,8 +42,6 @@ import { ADMIN_NAV_LINKS, NAV_LINKS } from "./navLinks";
  * Dưới 2xl: menu thu vào nút hamburger, chỉ còn logo + hamburger cho đỡ chật —
  * ở cỡ chữ này các mục menu, chuông và tài khoản không đủ chỗ trên 1 hàng.
  */
-const STUDENT_PROGRESS_LINK = { href: "/theo-doi-hoc-tap", label: "Theo dõi học tập" };
-
 export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCount?: number }) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,19 +49,15 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
   const isAuthenticated = status === "authenticated" && session?.user;
   const isStudent = isAuthenticated && session.user.role === "STUDENT";
   const isAdmin = isAuthenticated && session.user.role === "ADMIN";
-  const links = isAdmin
-    ? ADMIN_NAV_LINKS
-    : isStudent
-      ? [...NAV_LINKS, STUDENT_PROGRESS_LINK]
-      : NAV_LINKS;
+  const links = isAdmin ? ADMIN_NAV_LINKS : NAV_LINKS;
   const homeHref = isAdmin ? "/admin" : "/";
   const visibleUnreadCount = pathname === "/thong-bao" ? 0 : unreadNotificationCount;
 
   return (
-    <header className="sticky top-0 z-50 w-full overflow-hidden rounded-b-[2.25rem] bg-nav shadow-[0_10px_28px_rgba(27,42,74,0.12)] 2xl:overflow-visible">
+    <header className="ds-nav sticky top-5 z-50 mx-4 mt-5 overflow-hidden rounded-[1.75rem] 2xl:mx-auto 2xl:w-[calc(100%-2.5rem)] 2xl:max-w-[96rem] 2xl:overflow-visible 2xl:rounded-full">
       <nav
         aria-label="Điều hướng chính"
-        className="grid w-full grid-cols-[auto_1fr_auto] items-center gap-3 px-4 py-4 2xl:grid-cols-[1fr_auto_1fr] 2xl:px-5"
+        className="grid w-full grid-cols-[auto_1fr_auto] items-center gap-3 px-5 py-2 2xl:grid-cols-[auto_1fr_auto]"
       >
         {/* TRÁI — logo, bấm về Trang chủ */}
         <div className="flex items-center justify-start">
@@ -76,7 +70,7 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
         </div>
 
         {/* GIỮA — toàn bộ mục menu (chỉ desktop) */}
-        <ul className="hidden items-center gap-0.5 text-lg 2xl:flex">
+        <ul className="hidden items-center justify-center gap-0.5 text-base 2xl:flex">
           {links.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -87,8 +81,8 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
                   className={cn(
                     "block rounded-full px-2.5 py-2 whitespace-nowrap transition-colors",
                     isActive
-                      ? "bg-navy-500 text-pastel-50"
-                      : "text-navy-500 hover:bg-white hover:text-navy-600",
+                      ? "bg-pastel-100 font-bold text-navy-500"
+                      : "font-normal text-navy-500 hover:bg-pastel-50 hover:font-bold",
                   )}
                 >
                   {link.label}
@@ -102,7 +96,7 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
             khối riêng. Đăng ký là nút chính (nền navy đặc), Đăng nhập là phụ.
             Hamburger thay cả cụm này ở mobile. */}
         <div className="flex items-center justify-end gap-2 2xl:border-l 2xl:border-navy-100/80 2xl:pl-3">
-          <ThemeToggle className="hidden w-32 2xl:flex" />
+          <ThemeToggle className="hidden 2xl:inline-flex" />
           {isStudent && (
             <Link
               href="/thong-bao"
@@ -162,10 +156,10 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
       <div
         id="mobile-menu"
         hidden={!isMenuOpen}
-        className="border-t border-navy-100/70 bg-nav 2xl:hidden"
+        className="border-t border-navy-100/70 2xl:hidden"
       >
         <ul className="flex w-full flex-col gap-1 px-4 py-4 text-lg">
-          <li><ThemeToggle className="w-full" /></li>
+          <li className="px-4 py-1"><ThemeToggle label="Giao diện sáng / tối" /></li>
           {links.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -212,6 +206,16 @@ export function Navbar({ unreadNotificationCount = 0 }: { unreadNotificationCoun
                   <KeyRound className="size-5" aria-hidden />
                   Đổi mật khẩu
                 </Link>
+                {session.user.role === "STUDENT" && (
+                  <Link
+                    href="/tai-khoan/theo-doi-hoc-tap"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex w-full items-center justify-center gap-2 rounded-2xl border border-navy-200/60 bg-white px-4 py-3 font-medium text-navy-500 transition-colors hover:bg-pastel-50"
+                  >
+                    <ChartNoAxesColumnIncreasing className="size-5" aria-hidden />
+                    Theo dõi học tập
+                  </Link>
+                )}
                 {session.user.role === "ADMIN" && (
                   <Link
                     href="/admin"
@@ -300,6 +304,7 @@ const ACCOUNT_MENU_ITEMS = [
   { key: "admin", label: "Trang quản trị", icon: ShieldCheck, href: "/admin", adminOnly: true },
   { key: "search", label: "Tìm kiếm", icon: Search, href: "/tim-kiem", adminOnly: false },
   { key: "password", label: "Đổi mật khẩu", icon: KeyRound, href: "/tai-khoan/doi-mat-khau", adminOnly: false },
+  { key: "progress", label: "Theo dõi học tập", icon: ChartNoAxesColumnIncreasing, href: "/tai-khoan/theo-doi-hoc-tap", adminOnly: false, studentOnly: true },
   { key: "logout", label: "Đăng xuất", icon: LogOut, href: null, adminOnly: false },
 ] as const;
 
@@ -341,7 +346,7 @@ function AccountMenu({ user }: { user: NavbarSessionUser }) {
         className="flex items-center gap-2 rounded-full border border-navy-200/60 bg-white py-1.5 pr-4 pl-1.5 text-lg font-medium whitespace-nowrap text-navy-500 transition-colors hover:bg-pastel-50"
       >
         <Avatar user={user} />
-        <span className="max-w-32 truncate">{user.name ?? user.email}</span>
+        <span className="max-w-64 truncate">{user.name ?? user.email}</span>
       </button>
 
       {isOpen && (
@@ -351,6 +356,7 @@ function AccountMenu({ user }: { user: NavbarSessionUser }) {
         >
           {ACCOUNT_MENU_ITEMS.map((item) => {
             if (item.adminOnly && user.role !== "ADMIN") return null;
+            if ("studentOnly" in item && item.studentOnly && user.role !== "STUDENT") return null;
             const Icon = item.icon;
             const itemHref = item.key === "search" && user.role === "ADMIN" ? "/admin/tim-kiem" : item.href;
 

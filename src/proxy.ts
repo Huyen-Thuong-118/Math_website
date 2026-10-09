@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { hasCurrentCredentialVersion } from "@/features/auth/lib/credential-version";
 import { db } from "@/lib/db";
 
 // Next.js 16 đã đổi tên file convention "middleware.ts" -> "proxy.ts" (hành vi
@@ -17,7 +18,7 @@ export default auth(async (req) => {
   const user = req.auth?.user;
 
   const isAdminRoute = pathname.startsWith("/admin");
-  const isStudentRoute = ["/lop-hoc", "/lich-hoc", "/on-tap", "/thi-thu", "/tai-lieu", "/thong-bao", "/theo-doi-hoc-tap"].some(
+  const isStudentRoute = ["/lop-hoc", "/lich-hoc", "/on-tap", "/thi-thu", "/tai-lieu", "/thong-bao", "/tai-khoan/theo-doi-hoc-tap"].some(
     (p) => pathname.startsWith(p),
   );
 
@@ -28,9 +29,13 @@ export default auth(async (req) => {
 
     const current = await db.user.findUnique({
       where: { id: user.id },
-      select: { role: true, status: true },
+      select: { role: true, status: true, credentialVersion: true },
     });
-    if (!current || current.role !== "ADMIN") {
+    if (
+      !current ||
+      current.role !== "ADMIN" ||
+      !hasCurrentCredentialVersion(user.credentialVersion, current.credentialVersion)
+    ) {
       return Response.redirect(new URL("/dang-nhap", req.url));
     }
     if (current.status === "SUSPENDED") {
@@ -53,6 +58,7 @@ export default auth(async (req) => {
         studentPhone: true,
         parentPhone: true,
         mustChangePassword: true,
+        credentialVersion: true,
       },
     });
 
@@ -66,6 +72,9 @@ export default auth(async (req) => {
     }
     if (current?.role !== "STUDENT") {
       return Response.redirect(new URL("/admin", req.url));
+    }
+    if (!hasCurrentCredentialVersion(user.credentialVersion, current.credentialVersion)) {
+      return Response.redirect(new URL("/dang-nhap", req.url));
     }
     if (!current.studentPhone || !current.parentPhone) {
       return Response.redirect(new URL("/hoan-tat-ho-so", req.url));
@@ -88,6 +97,6 @@ export const config = {
     "/thi-thu/:path*",
     "/tai-lieu/:path*",
     "/thong-bao/:path*",
-    "/theo-doi-hoc-tap/:path*",
+    "/tai-khoan/theo-doi-hoc-tap/:path*",
   ],
 };

@@ -17,10 +17,19 @@ import {
 import { GoogleAuthButton } from "./GoogleAuthButton";
 
 const inputClass =
-  "w-full rounded-2xl border border-navy-100 bg-pastel-50/60 px-4 py-3 text-sm text-navy-500 placeholder:text-navy-300/70 outline-none transition-colors focus:border-navy-400 focus:bg-white";
+  "w-full min-h-12 rounded-full border border-navy-200/60 bg-white px-5 py-3 text-sm text-navy-500 placeholder:text-navy-300/70 outline-none transition-colors focus:border-[#3b82f6]";
 const errorInputClass = "border-accent-500/70 focus:border-accent-500";
 const primaryButtonClass =
-  "inline-flex w-full items-center justify-center gap-2 rounded-full bg-linear-to-r from-navy-500 to-navy-700 px-6 py-3 text-sm font-semibold text-pastel-50 shadow-[0_8px_24px_rgba(27,42,74,0.28)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(27,42,74,0.35)] disabled:pointer-events-none disabled:opacity-70";
+  "inline-flex w-full min-h-12 items-center justify-center gap-2 rounded-full bg-navy-500 px-6 py-3 text-sm font-semibold text-pastel-50 shadow-[0_12px_32px_-8px_rgba(27,42,74,0.35)] transition-all hover:-translate-y-px hover:bg-navy-600 disabled:pointer-events-none disabled:opacity-70";
+
+function passwordStrength(value: string): number {
+  let score = 0;
+  if (value.length >= 8) score++;
+  if (/[a-z]/.test(value) && /[A-Z]/.test(value)) score++;
+  if (/\d/.test(value)) score++;
+  if (/[^A-Za-z0-9]/.test(value) || value.length >= 12) score++;
+  return Math.max(score, 1);
+}
 
 type FieldName =
   | "fullName"
@@ -94,7 +103,7 @@ export function RegisterForm({ googleEnabled }: { googleEnabled: boolean }) {
     return (
       <div className="flex flex-col items-center gap-4 py-6 text-center">
         <CheckCircle2 className="size-16 text-navy-500" aria-hidden />
-        <h1 className="text-2xl font-semibold text-navy-500">
+        <h1 className="text-3xl font-bold text-navy-500">
           Đăng ký thành công
         </h1>
         <p className="text-sm text-navy-400">
@@ -114,9 +123,9 @@ export function RegisterForm({ googleEnabled }: { googleEnabled: boolean }) {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-semibold text-navy-500">Đăng ký</h1>
+        <h1 className="text-3xl font-bold text-navy-500">Tạo tài khoản</h1>
         <p className="text-sm text-navy-300">
-          Tạo tài khoản để bắt đầu ôn luyện cùng BQD Math
+          Bắt đầu ôn thi cùng BQD Math — đồng hành chinh phục điểm 9+
         </p>
       </div>
 
@@ -228,6 +237,16 @@ export function RegisterForm({ googleEnabled }: { googleEnabled: boolean }) {
               )}
             </button>
           </div>
+          {password && (
+            <div className="flex items-center gap-2" aria-live="polite">
+              <div className="flex flex-1 gap-1" aria-hidden>
+                {[1, 2, 3, 4].map((level) => (
+                  <span key={level} className={cn("h-1.5 flex-1 rounded-full", level <= passwordStrength(password) ? "bg-[#3b82f6]" : "bg-navy-100")} />
+                ))}
+              </div>
+              <span className="text-xs text-[#3b82f6]">Độ mạnh: {["", "Yếu", "Trung bình", "Khá", "Mạnh"][passwordStrength(password)]}</span>
+            </div>
+          )}
           {errors.password && (
             <p className="text-xs text-accent-500">{errors.password}</p>
           )}

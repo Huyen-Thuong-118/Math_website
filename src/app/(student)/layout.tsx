@@ -14,7 +14,7 @@ export default async function StudentLayout({
   return (
     <>
       <Navbar unreadNotificationCount={unreadNotificationCount} />
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
+      <main className="ds mx-auto w-full max-w-6xl flex-1 px-4 py-8">
         {children}
       </main>
       <Footer />
