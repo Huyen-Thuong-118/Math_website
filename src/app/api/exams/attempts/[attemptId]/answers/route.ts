@@ -24,7 +24,7 @@ export async function POST(
   try {
     const userId = await requireActiveStudentId();
     const { attemptId } = await params;
-    const body: unknown = await request.json();
+    const body: unknown = await request.json().catch(() => null);
 
     if (!validateAnswerBatch(body)) {
       return Response.json(
